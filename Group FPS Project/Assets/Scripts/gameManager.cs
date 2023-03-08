@@ -9,15 +9,10 @@ public class gameManager : MonoBehaviour
     [Header("----- Player -----")]
     public GameObject player;
     public playerController playerScript;
-    public GameObject playerSpawnPos;
 
     [Header("----- UI -----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
-    public GameObject winMenu;
-    public GameObject loseMenu;
-    public GameObject checkPointMenu;
-    public GameObject playerHitFlash;
 
     [Header("----- Game Goal -----")]
     public int enemiesRemaining;
@@ -30,12 +25,37 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        playerSpawnPos = GameObject.FindGameObjectWithTag("Player Spawn Pos");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            isPaused = !isPaused;
+            activeMenu = pauseMenu;
+            activeMenu.SetActive(isPaused);
+
+            if (isPaused)
+                pauseState();
+            else
+                unpauseState();
+        }
+    }
+
+    public void pauseState()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
+    public void unpauseState()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        activeMenu.SetActive(false);
+        activeMenu = null;
     }
 }
