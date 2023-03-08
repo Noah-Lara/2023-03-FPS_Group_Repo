@@ -6,7 +6,7 @@ using TMPro;
 public class timer : MonoBehaviour
 {
     [Header("----- Components -----")]
-    public TextMeshProUGUI tiemrText;
+    public TextMeshProUGUI timerText;
 
     [Header("----- Timer Settings -----")]
     public float currentTime;
@@ -20,6 +20,7 @@ public class timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentTime += Time.deltaTime;
+        timerText.text = currentTime.ToString("0.00");
     }
 }
