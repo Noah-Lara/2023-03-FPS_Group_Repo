@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 286009460}
   - component: {fileID: 286009459}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 825943933641316813}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -381,7 +381,7 @@ RectTransform:
   - {fileID: 825943934645237875}
   - {fileID: 825943934125211324}
   m_Father: {fileID: 825943933641316813}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -459,8 +459,8 @@ RectTransform:
   m_Children:
   - {fileID: 825943933405932187}
   - {fileID: 825943933200484393}
-  - {fileID: 825943933424569391}
   - {fileID: 286009458}
+  - {fileID: 825943933424569391}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
