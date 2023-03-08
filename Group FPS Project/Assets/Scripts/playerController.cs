@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        respawnPlayer();
     }
 
     // Update is called once per frame
@@ -84,4 +84,12 @@ public class playerController : MonoBehaviour
     //    yield return new WaitForSeconds(shootRate);
     //    isShooting = false;
     //}
+
+
+    public void respawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
 }
