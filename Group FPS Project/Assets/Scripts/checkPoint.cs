@@ -11,13 +11,18 @@ public class checkPoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-
+            gameManager.instance.playerSpawnPos.transform.position = transform.position;
+            StartCoroutine(flashmat());
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Creates a flash and response
+    IEnumerator flashmat()
     {
-        
+        model.material.color = Color.red;
+        gameManager.instance.checkpointMenu.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        model.material.color = Color.white;
+        gameManager.instance.checkpointMenu.SetActive(false);
     }
 }
