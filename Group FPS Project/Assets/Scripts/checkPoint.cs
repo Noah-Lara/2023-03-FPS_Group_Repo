@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class checkPoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Initalize Variables
+    [SerializeField] Renderer model;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+
+        }
     }
 
     // Update is called once per frame
