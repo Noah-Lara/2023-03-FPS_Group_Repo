@@ -33,14 +33,14 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement();
-        //if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
-        //{
-        //    movement();
-        //    if (!isShooting && Input.GetButton("Shoot"))
-        //    {
-        //        StartCoroutine(shoot());
-        //    }
-        //}
+        if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
+        {
+            movement();
+            if (!isShooting && Input.GetButton("Shoot"))
+            {
+                StartCoroutine(shoot());
+            }
+        }
     }
     //Movement settings
     void movement()
@@ -68,22 +68,22 @@ public class playerController : MonoBehaviour
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
 
-    //IEnumerator shoot()
-    //{
-    //    isShooting = true;
+    IEnumerator shoot()
+    {
+        isShooting = true;
 
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-    //    {
-    //        if (hit.collider.GetComponent<IDamage>() != null)
-    //        {
-    //            hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-    //        }
-    //        // Instantiate(cube, hit.point, transform.rotation);//instantiate a cube where player is looking
-    //    }
-    //    yield return new WaitForSeconds(shootRate);
-    //    isShooting = false;
-    //}
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+        {
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+            }
+            // Instantiate(cube, hit.point, transform.rotation);//instantiate a cube where player is looking
+        }
+        yield return new WaitForSeconds(shootRate);
+        isShooting = false;
+    }
 
 
     public void respawnPlayer()
