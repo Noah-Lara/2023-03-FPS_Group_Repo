@@ -6,6 +6,7 @@ public class playerController : MonoBehaviour
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
+
     [Header("-----Player Stats-----")]
     [Range(1, 15)] [SerializeField] float playerSpeed;
     [Range(1, 4)] [SerializeField] int jumpTimes;

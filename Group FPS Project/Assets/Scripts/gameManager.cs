@@ -61,4 +61,10 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(false);
         activeMenu = null;
     }
+
+    //Tracks the number of enemies spawned in
+    public void updateGameGoal(int amount)
+    {
+        enemiesRemaining += amount;
+    }
 }
