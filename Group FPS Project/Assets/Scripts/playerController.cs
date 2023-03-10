@@ -27,6 +27,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HPOriginal = HP;
         respawnPlayer();
     }
 
@@ -89,6 +90,8 @@ public class playerController : MonoBehaviour
 
     public void respawnPlayer()
     {
+        HP = HPOriginal;
+        //playerHpUiUpdate();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;

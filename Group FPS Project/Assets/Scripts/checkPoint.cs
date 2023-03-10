@@ -11,7 +11,7 @@ public class checkPoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerSpawnPos.transform.position = transform.position;
-           // StartCoroutine(flashMat());
+            StartCoroutine(flashMat());
         }
     }
 
