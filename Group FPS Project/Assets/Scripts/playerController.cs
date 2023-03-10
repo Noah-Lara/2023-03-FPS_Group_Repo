@@ -6,8 +6,8 @@ public class playerController : MonoBehaviour
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
-
     [Header("-----Player Stats-----")]
+    [Range(1, 100)] [SerializeField] int HP;
     [Range(1, 15)] [SerializeField] float playerSpeed;
     [Range(1, 4)] [SerializeField] int jumpTimes;
     [Range(1, 15)] [SerializeField] int jumpSpeed;
@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour
     Vector3 move;
     Vector3 playerVelocity;
     bool isShooting;
+    int HPOriginal;
 
     // Start is called before the first frame update
     void Start()
@@ -91,5 +92,14 @@ public class playerController : MonoBehaviour
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
+    }
+    public void takeDamage(int dmg)
+    {
+        HP -= dmg;
+        
+        if (HP <= 0)
+        {
+            gameManager.instance.playerDead();
+        }
     }
 }

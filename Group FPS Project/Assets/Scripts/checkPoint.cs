@@ -6,23 +6,21 @@ public class checkPoint : MonoBehaviour
 {
     //Initalize Variables
     [SerializeField] Renderer model;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerSpawnPos.transform.position = transform.position;
-            StartCoroutine(flashmat());
+           // StartCoroutine(flashMat());
         }
     }
 
-    // Creates a flash and response
-    IEnumerator flashmat()
+    IEnumerator flashMat()
     {
-        model.material.color = Color.red;
-        gameManager.instance.checkpointMenu.SetActive(true);
+        model.material.color = Color.green;
+        gameManager.instance.checkPointMenu.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         model.material.color = Color.white;
-        gameManager.instance.checkpointMenu.SetActive(false);
+        gameManager.instance.checkPointMenu.SetActive(false);
     }
 }

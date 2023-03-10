@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("----- Player -----")]
+    [Header("-----Player Stuff-----")]
     public GameObject player;
     public playerController playerScript;
     public GameObject playerSpawnPos;
 
-    [Header("----- UI -----")]
+    [Header("-----UI-----")]
     public GameObject activeMenu;
     public GameObject pauseMenu;
-    public GameObject checkpointMenu;
+    public GameObject winMenu;
+    public GameObject loseMenu;
+    public GameObject checkPointMenu;
+    public Image playerHPBar;
+    public TextMeshProUGUI enemiesRemainingText;
+    public TextMeshProUGUI bossRemainingText;
 
-    [Header("----- Game Goal -----")]
+    [Header("-----Game Goals-----")]
     public int enemiesRemaining;
-
     public bool isPaused;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -66,5 +71,11 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         enemiesRemaining += amount;
+    }
+    public void playerDead()
+    {
+        pauseState();
+        activeMenu = loseMenu;
+        activeMenu.SetActive(true);
     }
 }

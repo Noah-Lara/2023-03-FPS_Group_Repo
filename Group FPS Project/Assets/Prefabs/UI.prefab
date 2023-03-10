@@ -293,7 +293,12 @@ MonoBehaviour:
   playerSpawnPos: {fileID: 0}
   activeMenu: {fileID: 0}
   pauseMenu: {fileID: 825943933424569390}
-  checkpointMenu: {fileID: 8179956331183245081}
+  winMenu: {fileID: 0}
+  loseMenu: {fileID: 0}
+  checkPointMenu: {fileID: 0}
+  playerHPBar: {fileID: 0}
+  enemiesRemainingText: {fileID: 0}
+  bossRemainingText: {fileID: 0}
   enemiesRemaining: 0
   isPaused: 0
 --- !u!1 &825943933405639316
@@ -1558,7 +1563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Timer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

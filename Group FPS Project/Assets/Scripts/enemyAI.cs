@@ -5,18 +5,31 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
-    [Header("----- Components -----")]
+    [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    
-    [Header("----- Enemy Stats -----")]
+    [Header("-----Enemy Stats-----")]
+    [SerializeField] Transform headPos;
     [SerializeField] int HP;
+    [SerializeField] int roamDist;
+    [SerializeField] int sightAngle;
+    [SerializeField] int playerFaceSpeed;
+    [SerializeField] int waitTime;
 
-    [Header("----- Gun Stats -----")]
+    [Header("-----Gun Stats-----")]
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] GameObject bullet;
+    [SerializeField] int bulletSpeed;
+    [SerializeField] Transform shootPos;
 
     bool isShooting;
+    public bool playerInRange;
+    Vector3 playerDir;
+    float angleToPlayer;
+    bool destinationChosen;
+    float stoppingDistOrg;
+    Vector3 startingPos;
 
     //Checks Game-manager to increase total number of enemies
     void Start()
@@ -37,7 +50,8 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        //Bullet Stuff
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
@@ -45,9 +59,9 @@ public class enemyAI : MonoBehaviour, IDamage
     //Damages the Enemy
     public void takeDamage(int dmg)
     {
+        agent.SetDestination(gameManager.instance.player.transform.position);
         HP -= dmg;
         StartCoroutine(flashMat());
-
         if (HP <= 0)
         {
             gameManager.instance.updateGameGoal(-1);

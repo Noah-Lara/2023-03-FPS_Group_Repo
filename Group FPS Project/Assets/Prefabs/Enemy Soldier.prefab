@@ -179,9 +179,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 612213215369678587}
   agent: {fileID: 612213215365447934}
-  HP: 0
-  shootRate: 0
-  shootDist: 0
+  headPos: {fileID: 0}
+  HP: 5
+  roamDist: 0
+  sightAngle: 0
+  playerFaceSpeed: 0
+  waitTime: 0
+  shootRate: 0.5
+  shootDist: 50
+  bullet: {fileID: 0}
+  bulletSpeed: 25
+  shootPos: {fileID: 5004082512014266593}
+  playerInRange: 0
 --- !u!195 &612213215365447934
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1053,7 +1062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104239539488404040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.525, y: -0.177, z: 0.135}
+  m_LocalPosition: {x: -1.533, y: -0.178, z: 0.135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
