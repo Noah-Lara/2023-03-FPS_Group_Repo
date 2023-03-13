@@ -60,12 +60,17 @@ MonoBehaviour:
   controller: {fileID: 4569225875141538479}
   HP: 9
   playerSpeed: 5
+  sprintMod: 2
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
+  gunList: []
   shootRate: 0.5
   shootDist: 200
   shootDamage: 1
+  gunModel: {fileID: 0}
+  gunMaterial: {fileID: 0}
+  isSprinting: 0
 --- !u!143 &4569225875141538479
 CharacterController:
   m_ObjectHideFlags: 0

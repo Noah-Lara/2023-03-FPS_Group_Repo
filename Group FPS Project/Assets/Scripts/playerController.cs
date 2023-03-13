@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour
     bool isShooting;
     int HPOriginal;
     int selectedGun;
-    bool isSprinting;
+    public bool isSprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -81,7 +81,7 @@ public class playerController : MonoBehaviour
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
 
-    void Sprint()
+    public void Sprint()
     {
         if(Input.GetButtonDown("Sprint"))
         {
