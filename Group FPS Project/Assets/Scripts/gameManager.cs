@@ -71,6 +71,14 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int amount)
     {
         enemiesRemaining += amount;
+
+        //The Goal(Subject to change)
+        if (enemiesRemaining <= 0)
+        {
+            pauseState();
+            activeMenu = winMenu;
+            activeMenu.SetActive(true);
+        }
     }
     public void playerDead()
     {
