@@ -179,10 +179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 612213215369678587}
   agent: {fileID: 612213215365447934}
-  headPos: {fileID: 0}
+  headPos: {fileID: 612213215358547473}
   HP: 5
   roamDist: 0
-  sightAngle: 0
+  sightAngle: 90
   playerFaceSpeed: 0
   waitTime: 0
   shootRate: 0.5
