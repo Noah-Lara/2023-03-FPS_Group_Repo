@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 612213215365447929}
   - component: {fileID: 612213215365447935}
   - component: {fileID: 612213215365447928}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,8 +255,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612213215358142623}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}

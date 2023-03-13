@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
     [SerializeField] int HP;
@@ -37,13 +38,32 @@ public class enemyAI : MonoBehaviour, IDamage
         gameManager.instance.updateGameGoal(1);
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        if (!isShooting)
+        if (playerInRange)
         {
-            StartCoroutine(shoot());
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isShooting)
+            {
+                StartCoroutine(shoot());
+            }
         }
     }
 
