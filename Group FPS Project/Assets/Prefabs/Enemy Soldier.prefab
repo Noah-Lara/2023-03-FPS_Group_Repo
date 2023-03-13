@@ -183,7 +183,7 @@ MonoBehaviour:
   HP: 5
   roamDist: 10
   sightAngle: 90
-  playerFaceSpeed: 0
+  playerFaceSpeed: 5
   waitTime: 3
   shootRate: 0.5
   shootDist: 50

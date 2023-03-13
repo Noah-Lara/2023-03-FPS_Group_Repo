@@ -63,8 +63,8 @@ MonoBehaviour:
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
-  shootRate: 0.1
-  shootDist: 500
+  shootRate: 0.5
+  shootDist: 200
   shootDamage: 1
 --- !u!143 &4569225875141538479
 CharacterController:

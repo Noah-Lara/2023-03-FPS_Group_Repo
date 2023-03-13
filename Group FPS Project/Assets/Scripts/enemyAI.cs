@@ -89,7 +89,12 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
-                
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    FacePlayer();
+                }
+
                 if (!isShooting)
                 {
                     StartCoroutine(shoot());
@@ -117,6 +122,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
             agent.SetDestination(hit.position);
         }
+    }
+
+    void FacePlayer()
+    {
+        playerDir.y = 0;
+        Quaternion rot = Quaternion.LookRotation(playerDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
     IEnumerator shoot()
