@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject checkPointMenu;
+    public GameObject PlayerhitFlash;
     public Image playerHPBar;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI bossRemainingText;
@@ -85,5 +86,12 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
+    }
+
+    public IEnumerator playerHit()
+    {
+        PlayerhitFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        PlayerhitFlash.SetActive(false);
     }
 }

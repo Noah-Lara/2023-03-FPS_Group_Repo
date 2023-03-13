@@ -99,7 +99,8 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        
+        StartCoroutine(gameManager.instance.playerHit());
+
         if (HP <= 0)
         {
             gameManager.instance.playerDead();
