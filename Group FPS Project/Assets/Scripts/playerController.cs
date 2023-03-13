@@ -16,15 +16,19 @@ public class playerController : MonoBehaviour
     [Range(1, 70)] [SerializeField] int gravity;
 
     [Header("-----Gun Stats-----")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
+    [SerializeField] MeshFilter gunModel;
+    [SerializeField] MeshRenderer gunMaterial;
 
     int jumpCurrent;
     Vector3 move;
     Vector3 playerVelocity;
     bool isShooting;
     int HPOriginal;
+    int selectedGun;
     bool isSprinting;
 
     // Start is called before the first frame update
@@ -133,10 +137,15 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOriginal;
     }
 
-    public void gunPickup(gunStats gunStats)
+    public void gunPickup(gunStats gunStat)
     {
-        shootDamage = gunStats.shootDamage;
-        shootDist = gunStats.shootDist;
-        shootRate = gunStats.shootRate;
+        gunList.Add(gunStat);
+        
+        shootDamage = gunStat.shootDamage;
+        shootDist = gunStat.shootDist;
+        shootRate = gunStat.shootRate;
+
+        gunModel.sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunMaterial.sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
