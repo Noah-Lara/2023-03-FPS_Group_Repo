@@ -43,9 +43,10 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement();
+        selectGun();
+
         if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
-        {
-            movement();
+        { 
             if (!isShooting && Input.GetButton("Shoot"))
             {
                 StartCoroutine(shoot());
@@ -147,5 +148,31 @@ public class playerController : MonoBehaviour
 
         gunModel.sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
         gunMaterial.sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        selectedGun = gunList.Count - 1;
+    }
+
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        {
+            selectedGun++;
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        {
+            selectedGun--;
+            changeGun();
+        }
+    }
+
+    void changeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootDist = gunList[selectedGun].shootDist;
+        shootRate = gunList[selectedGun].shootRate;
+
+        gunModel.sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        gunMaterial.sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
