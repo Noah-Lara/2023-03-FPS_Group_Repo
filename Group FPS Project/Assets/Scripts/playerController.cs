@@ -132,4 +132,11 @@ public class playerController : MonoBehaviour
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOriginal;
     }
+
+    public void gunPickup(gunStats gunStats)
+    {
+        shootDamage = gunStats.shootDamage;
+        shootDist = gunStats.shootDist;
+        shootRate = gunStats.shootRate;
+    }
 }
