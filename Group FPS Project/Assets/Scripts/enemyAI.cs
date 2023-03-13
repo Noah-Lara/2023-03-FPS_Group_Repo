@@ -24,6 +24,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int bulletSpeed;
     [SerializeField] Transform shootPos;
 
+    //Variables
     bool isShooting;
     public bool playerInRange;
     Vector3 playerDir;
@@ -36,6 +37,8 @@ public class enemyAI : MonoBehaviour, IDamage
     void Start()
     {
         gameManager.instance.updateGameGoal(1);
+        stoppingDistOrg = agent.stoppingDistance;
+        startingPos = transform.position;
     }
 
     void OnTriggerEnter(Collider other)
@@ -51,16 +54,23 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerInRange && canSeePlayer())
+        if (playerInRange)
         {
-            
-            
+            if(canSeePlayer())
+            {
+                StartCoroutine(roam());
+            }
+        }
+        else if (agent.destination != gameManager.instance.player.transform.position)
+        {
+            StartCoroutine(roam());
         }
     }
 
@@ -77,6 +87,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
             {
+                agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
                 
                 if (!isShooting)
@@ -87,6 +98,25 @@ public class enemyAI : MonoBehaviour, IDamage
             }
         }
         return false;
+    }
+
+    //Function that takes a random stop in the radius thats on the NavMesh and moves enemy.
+    IEnumerator roam()
+    {
+        if (!destinationChosen && agent.remainingDistance < 0.05)
+        {
+            destinationChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(waitTime);
+            destinationChosen = false;
+
+            Vector3 ranDir = Random.insideUnitSphere * roamDist;
+            ranDir += startingPos;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranDir, out hit, roamDist, 1);
+
+            agent.SetDestination(hit.position);
+        }
     }
 
     IEnumerator shoot()
