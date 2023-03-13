@@ -6,9 +6,11 @@ public class playerController : MonoBehaviour
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
+
     [Header("-----Player Stats-----")]
     [Range(1, 100)] [SerializeField] int HP;
     [Range(1, 15)] [SerializeField] float playerSpeed;
+    [Range(2,5)] [SerializeField] float sprintMod;
     [Range(1, 4)] [SerializeField] int jumpTimes;
     [Range(1, 15)] [SerializeField] int jumpSpeed;
     [Range(1, 70)] [SerializeField] int gravity;
@@ -23,6 +25,7 @@ public class playerController : MonoBehaviour
     Vector3 playerVelocity;
     bool isShooting;
     int HPOriginal;
+    bool isSprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +51,8 @@ public class playerController : MonoBehaviour
     //Movement settings
     void movement()
     {
+        Sprint();
+
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0;
@@ -70,6 +75,21 @@ public class playerController : MonoBehaviour
 
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
+
+    void Sprint()
+    {
+        if(Input.GetButtonDown("Sprint"))
+        {
+            isSprinting = true;
+            playerSpeed *= sprintMod;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            isSprinting = false;
+            playerSpeed /= sprintMod;
+        }
+    }
+
 
     IEnumerator shoot()
     {
