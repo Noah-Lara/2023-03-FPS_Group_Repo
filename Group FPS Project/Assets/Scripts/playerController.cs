@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour
     void Start()
     {
         HPOriginal = HP;
+        playerHpUiUpdate();
         respawnPlayer();
     }
 
@@ -91,7 +92,7 @@ public class playerController : MonoBehaviour
     public void respawnPlayer()
     {
         HP = HPOriginal;
-        //playerHpUiUpdate();
+        playerHpUiUpdate();
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
@@ -99,11 +100,16 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmg)
     {
         HP -= dmg;
+        playerHpUiUpdate();
         StartCoroutine(gameManager.instance.playerHit());
 
         if (HP <= 0)
         {
             gameManager.instance.playerDead();
         }
+    }
+    public void playerHpUiUpdate()
+    {
+        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOriginal;
     }
 }
