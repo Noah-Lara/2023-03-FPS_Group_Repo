@@ -23,6 +23,12 @@ public class playerController : MonoBehaviour
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
 
+    [Header("-----Gun Stats-----")]
+    [SerializeField] int zoomMax;
+    [SerializeField] int speedZoomIn;
+    [SerializeField] int speedZoomOut;
+
+
     int jumpCurrent;
     Vector3 move;
     Vector3 playerVelocity;
@@ -30,6 +36,7 @@ public class playerController : MonoBehaviour
     int HPOriginal;
     int selectedGun;
     public bool isSprinting;
+    float zoomOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +44,14 @@ public class playerController : MonoBehaviour
         HPOriginal = HP;
         playerHpUiUpdate();
         respawnPlayer();
+        zoomOrig = Camera.main.fieldOfView;
     }
 
     // Update is called once per frame
     void Update()
     {
         movement();
+        zoomCamera();
         selectGun();
 
         if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
@@ -81,7 +90,7 @@ public class playerController : MonoBehaviour
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
 
-    public void Sprint()
+    void Sprint()
     {
         if(Input.GetButtonDown("Sprint"))
         {
@@ -95,6 +104,17 @@ public class playerController : MonoBehaviour
         }
     }
 
+    void zoomCamera()
+    {
+        if (Input.GetButton("Zoom"))
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, zoomMax, Time.deltaTime * speedZoomIn);
+        }
+        else if (Camera.main.fieldOfView <= zoomOrig)
+        {
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, zoomOrig, Time.deltaTime * speedZoomOut);
+        }
+    }
 
     IEnumerator shoot()
     {
