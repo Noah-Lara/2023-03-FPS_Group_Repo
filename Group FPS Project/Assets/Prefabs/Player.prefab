@@ -70,6 +70,9 @@ MonoBehaviour:
   shootDamage: 1
   gunModel: {fileID: 0}
   gunMaterial: {fileID: 0}
+  zoomMax: 30
+  speedZoomIn: 3
+  speedZoomOut: 6
   isSprinting: 0
 --- !u!143 &4569225875141538479
 CharacterController:

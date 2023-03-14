@@ -328,6 +328,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
+      propertyPath: zoomMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
+      propertyPath: speedZoomIn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
+      propertyPath: speedZoomOut
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4569225875141538485, guid: d3166bc633bc299459110062018ab5b4, type: 3}
       propertyPath: m_Name
       value: Player
