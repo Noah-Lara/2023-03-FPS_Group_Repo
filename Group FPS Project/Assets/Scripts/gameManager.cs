@@ -20,6 +20,7 @@ public class gameManager : MonoBehaviour
     public GameObject checkPointMenu;
     public GameObject PlayerhitFlash;
     public Image playerHPBar;
+    public Image playerStaminaBar;
     public TextMeshProUGUI enemiesRemainingText;
     public TextMeshProUGUI bossRemainingText;
 

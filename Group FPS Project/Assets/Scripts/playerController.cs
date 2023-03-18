@@ -11,9 +11,11 @@ public class playerController : MonoBehaviour
     [Range(1, 100)] [SerializeField] int HP;
     [Range(1, 15)] [SerializeField] float playerSpeed;
     [Range(2,5)] [SerializeField] float sprintMod;
+    [Range(1, 10)] [SerializeField] int drainRate;
     [Range(1, 4)] [SerializeField] int jumpTimes;
     [Range(1, 15)] [SerializeField] int jumpSpeed;
     [Range(1, 70)] [SerializeField] int gravity;
+    [Range(1, 100)] [SerializeField] int stamina;
 
     [Header("-----Gun Stats-----")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
@@ -34,6 +36,8 @@ public class playerController : MonoBehaviour
     Vector3 playerVelocity;
     bool isShooting;
     int HPOriginal;
+    int StaminaOrig;
+    float playerSpeedOrig;
     int selectedGun;
     public bool isSprinting;
     float zoomOrig;
@@ -41,7 +45,9 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerSpeedOrig = playerSpeed;
         HPOriginal = HP;
+        StaminaOrig =  stamina;
         playerHpUiUpdate();
         respawnPlayer();
         zoomOrig = Camera.main.fieldOfView;
@@ -65,7 +71,8 @@ public class playerController : MonoBehaviour
     //Movement settings
     void movement()
     {
-        Sprint();
+        //Sprint();
+        StartCoroutine(Dash());
 
         if (controller.isGrounded && playerVelocity.y < 0)
         {
@@ -90,18 +97,55 @@ public class playerController : MonoBehaviour
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
 
-    void Sprint()
+    /* void Sprint()
+     {
+         if(Input.GetButtonDown("Sprint") && stamina != 0)
+         {
+             isSprinting = true;
+             playerSpeed *= sprintMod;
+             StartCoroutine(staminaDrain());
+         }
+         else if (Input.GetButtonUp("Sprint") && isSprinting == true)
+         {
+             isSprinting = false;
+             playerSpeed /= sprintMod;
+             StartCoroutine(staminaRecharge());
+         }
+
+     }*/
+    IEnumerator Dash()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint") && stamina != 0)
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
+            StartCoroutine(staminaDrain());
         }
-        else if (Input.GetButtonUp("Sprint"))
+        if (Input.GetButtonUp("Sprint") && isSprinting == true) 
         {
             isSprinting = false;
             playerSpeed /= sprintMod;
+            StartCoroutine(staminaRecharge());
         }
+        yield return new WaitForSeconds(drainRate / 2);
+    }
+
+    IEnumerator staminaRecharge()
+    {
+        yield return new WaitForSeconds(drainRate);
+        if (stamina < StaminaOrig)
+        {
+          stamina ++;
+          playerSTMUiUpdate();
+        }
+    }
+
+    IEnumerator staminaDrain()
+    {
+        stamina--;
+        playerSTMUiUpdate();
+        yield return new WaitForSeconds(drainRate);
+        
     }
 
     void zoomCamera()
@@ -156,6 +200,11 @@ public class playerController : MonoBehaviour
     public void playerHpUiUpdate()
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOriginal;
+    }
+
+    public void playerSTMUiUpdate()
+    {
+        gameManager.instance.playerStaminaBar.fillAmount = (float)stamina / (float)StaminaOrig;
     }
 
     public void gunPickup(gunStats gunStat)

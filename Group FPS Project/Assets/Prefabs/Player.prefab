@@ -144,9 +144,11 @@ MonoBehaviour:
   HP: 9
   playerSpeed: 5
   sprintMod: 2
+  drainRate: 5
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
+  stamina: 3
   gunList: []
   shootRate: 0.1
   shootDist: 500
