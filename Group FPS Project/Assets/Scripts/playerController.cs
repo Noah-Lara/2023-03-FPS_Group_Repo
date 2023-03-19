@@ -72,7 +72,11 @@ public class playerController : MonoBehaviour
     void movement()
     {
         //Sprint();
-        StartCoroutine(Dash());
+        if (Input.GetButtonDown("Sprint") && stamina != 0)
+        {
+            StartCoroutine(Dash());
+            gameManager.instance.playerStaminaBar.transform.parent.gameObject.SetActive(true);
+        }
 
         if (controller.isGrounded && playerVelocity.y < 0)
         {
@@ -115,19 +119,15 @@ public class playerController : MonoBehaviour
      }*/
     IEnumerator Dash()
     {
-        if (Input.GetButtonDown("Sprint") && stamina != 0)
-        {
-            isSprinting = true;
-            playerSpeed *= sprintMod;
-            StartCoroutine(staminaDrain());
-        }
-        if (Input.GetButtonUp("Sprint") && isSprinting == true) 
-        {
-            isSprinting = false;
-            playerSpeed /= sprintMod;
-            StartCoroutine(staminaRecharge());
-        }
+        isSprinting = true;
+        playerSpeed *= sprintMod;
+        StartCoroutine(staminaDrain());
+       
         yield return new WaitForSeconds(drainRate / 2);
+
+        isSprinting = false;
+        playerSpeed /= sprintMod;
+        StartCoroutine(staminaRecharge());
     }
 
     IEnumerator staminaRecharge()
@@ -138,6 +138,8 @@ public class playerController : MonoBehaviour
           stamina ++;
           playerSTMUiUpdate();
         }
+        yield return new WaitForSeconds(drainRate /2 );
+        gameManager.instance.playerStaminaBar.transform.parent.gameObject.SetActive(false);
     }
 
     IEnumerator staminaDrain()
