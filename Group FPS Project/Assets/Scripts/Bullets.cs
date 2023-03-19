@@ -7,6 +7,8 @@ public class Bullets : MonoBehaviour
     public int damage;
     [SerializeField] int timer;
 
+    bool isHit;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -17,8 +19,9 @@ public class Bullets : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isHit)
         {
+            isHit = true;
             gameManager.instance.playerScript.takeDamage(damage);
         }
 

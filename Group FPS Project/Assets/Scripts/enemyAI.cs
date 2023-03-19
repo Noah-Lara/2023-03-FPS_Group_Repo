@@ -8,6 +8,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -23,6 +24,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
     [SerializeField] Transform shootPos;
+
+    [Header("-----Sword Stats-----")]
+    [SerializeField] Collider swordCol;
 
     //Variables
     bool isShooting;
@@ -61,6 +65,8 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+        
         if (playerInRange)
         {
             if(canSeePlayer())
@@ -134,18 +140,25 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        anim.SetTrigger("Shoot");
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    public void createBullet()
+    {
+        GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
+        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
     }
 
     //Damages the Enemy
     public void takeDamage(int dmg)
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
         HP -= dmg;
+        swordColOff();
+        agent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(flashMat());
+
         if (HP <= 0)
         {
             gameManager.instance.updateGameGoal(-1);
@@ -159,5 +172,15 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
+    }
+
+    public void swordColOn()
+    {
+        swordCol.enabled = true;
+    }
+
+    public void swordColOff()
+    {
+        swordCol.enabled = false;
     }
 }
