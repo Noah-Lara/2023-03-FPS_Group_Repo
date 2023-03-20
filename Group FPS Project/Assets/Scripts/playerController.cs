@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int shootDamage;
     [SerializeField] MeshFilter gunModel;
     [SerializeField] MeshRenderer gunMaterial;
+    [SerializeField] GameObject bulletHitEffect;
 
     [Header("-----Gun Stats-----")]
     [SerializeField] int zoomMax;
@@ -173,7 +174,8 @@ public class playerController : MonoBehaviour
             {
                 hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
             }
-            // Instantiate(cube, hit.point, transform.rotation);//instantiate a cube where player is looking
+
+            Instantiate(bulletHitEffect, hit.point, bulletHitEffect.transform.rotation);
         }
         yield return new WaitForSeconds(shootRate);
         isShooting = false;

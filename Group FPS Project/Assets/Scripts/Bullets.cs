@@ -6,6 +6,7 @@ public class Bullets : MonoBehaviour
 {
     public int damage;
     [SerializeField] int timer;
+    [SerializeField] GameObject hitEffect;
 
     bool isHit;
 
@@ -25,6 +26,7 @@ public class Bullets : MonoBehaviour
             gameManager.instance.playerScript.takeDamage(damage);
         }
 
+        Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
