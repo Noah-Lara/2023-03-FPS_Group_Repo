@@ -120,15 +120,18 @@ public class playerController : MonoBehaviour
      }*/
     IEnumerator Dash()
     {
-        isSprinting = true;
-        playerSpeed *= sprintMod;
-        StartCoroutine(staminaDrain());
-       
-        yield return new WaitForSeconds(drainRate / 2);
+        if (playerSpeed != playerSpeedOrig * sprintMod)
+        {
+            isSprinting = true;
+            playerSpeed *= sprintMod;
+            StartCoroutine(staminaDrain());
 
-        isSprinting = false;
-        playerSpeed /= sprintMod;
-        StartCoroutine(staminaRecharge());
+            yield return new WaitForSeconds(drainRate / 2);
+
+            isSprinting = false;
+            playerSpeed /= sprintMod;
+            StartCoroutine(staminaRecharge());
+        }
     }
 
     IEnumerator staminaRecharge()
