@@ -78,15 +78,21 @@ public class gameManager : MonoBehaviour
         //The Goal(Subject to change)
         if (enemiesRemaining <= 0)
         {
-            pauseState();
-            activeMenu = winMenu;
-            activeMenu.SetActive(true);
+            StartCoroutine(youWin());
         }
     }
     public void playerDead()
     {
         pauseState();
         activeMenu = loseMenu;
+        activeMenu.SetActive(true);
+    }
+
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(3);
+        pauseState();
+        activeMenu = winMenu;
         activeMenu.SetActive(true);
     }
 

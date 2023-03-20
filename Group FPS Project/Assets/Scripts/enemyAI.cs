@@ -65,18 +65,21 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
-        
-        if (playerInRange)
+        if (agent.isActiveAndEnabled)
         {
-            if(canSeePlayer())
+            anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
+
+            if (playerInRange)
+            {
+                if (canSeePlayer())
+                {
+                    StartCoroutine(roam());
+                }
+            }
+            else if (agent.destination != gameManager.instance.player.transform.position)
             {
                 StartCoroutine(roam());
             }
-        }
-        else if (agent.destination != gameManager.instance.player.transform.position)
-        {
-            StartCoroutine(roam());
         }
     }
 
@@ -145,6 +148,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
+    // Method call for the animator | Creates a bullet
     public void createBullet()
     {
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
@@ -155,14 +159,21 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmg)
     {
         HP -= dmg;
-        swordColOff();
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        StartCoroutine(flashMat());
 
         if (HP <= 0)
         {
+            StopAllCoroutines();
             gameManager.instance.updateGameGoal(-1);
-            Destroy(gameObject);
+            anim.SetBool("Dead", true);
+            GetComponent<CapsuleCollider>().enabled = false;
+            agent.enabled = false;
+        }
+        else
+        {
+            anim.SetTrigger("Damage");
+            swordColOff();
+            StartCoroutine(flashMat());
+            agent.SetDestination(gameManager.instance.player.transform.position);
         }
     }
 
