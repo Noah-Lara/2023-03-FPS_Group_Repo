@@ -161,6 +161,10 @@ public class playerController : MonoBehaviour
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, zoomOrig, Time.deltaTime * speedZoomOut);
         }
     }
+    public void pusBackInput(Vector3 amount)
+    {
+        pushBack += amount;
+    }
 
     IEnumerator shoot()
     {
