@@ -15,6 +15,7 @@ public class playerController : MonoBehaviour
     [Range(1, 4)] [SerializeField] int jumpTimes;
     [Range(1, 15)] [SerializeField] int jumpSpeed;
     [Range(1, 70)] [SerializeField] int gravity;
+    [SerializeField] int pushBackResolve;
     [Range(1, 100)] [SerializeField] int stamina;
 
     [Header("-----Gun Stats-----")]
@@ -42,6 +43,8 @@ public class playerController : MonoBehaviour
     int selectedGun;
     public bool isSprinting;
     float zoomOrig;
+
+    Vector3 pushBack;
 
     // Start is called before the first frame update
     void Start()
@@ -72,7 +75,8 @@ public class playerController : MonoBehaviour
     //Movement settings
     void movement()
     {
-        //Sprint();
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
         if (Input.GetButtonDown("Sprint") && stamina != 0)
         {
             StartCoroutine(Dash());
@@ -97,27 +101,12 @@ public class playerController : MonoBehaviour
         }
         playerVelocity.y -= gravity * Time.deltaTime;
 
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         //Debug.Log(move);//TrackPlayer Movement Speed
     }
 
-    /* void Sprint()
-     {
-         if(Input.GetButtonDown("Sprint") && stamina != 0)
-         {
-             isSprinting = true;
-             playerSpeed *= sprintMod;
-             StartCoroutine(staminaDrain());
-         }
-         else if (Input.GetButtonUp("Sprint") && isSprinting == true)
-         {
-             isSprinting = false;
-             playerSpeed /= sprintMod;
-             StartCoroutine(staminaRecharge());
-         }
-
-     }*/
+    
     IEnumerator Dash()
     {
         if (playerSpeed != playerSpeedOrig * sprintMod)
@@ -136,6 +125,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator staminaRecharge()
     {
+        //adds a point back to the Stamina Pool
         yield return new WaitForSeconds(drainRate);
         if (stamina < StaminaOrig)
         {
@@ -148,10 +138,16 @@ public class playerController : MonoBehaviour
 
     IEnumerator staminaDrain()
     {
+        //Subtracts point from the stamina pool
         stamina--;
         playerSTMUiUpdate();
         yield return new WaitForSeconds(drainRate);
         
+    }
+
+    public void pushBackInput(Vector3 amount)
+    {
+        pushBack += amount;
     }
 
     void zoomCamera()
@@ -187,6 +183,7 @@ public class playerController : MonoBehaviour
 
     public void respawnPlayer()
     {
+        pushBack = Vector3.zero;
         HP = HPOriginal;
         playerHpUiUpdate();
         controller.enabled = false;

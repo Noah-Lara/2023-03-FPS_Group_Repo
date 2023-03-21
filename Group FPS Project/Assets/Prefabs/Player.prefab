@@ -149,6 +149,7 @@ MonoBehaviour:
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
+  pushBackResolve: 5
   stamina: 3
   gunList: []
   shootRate: 0
