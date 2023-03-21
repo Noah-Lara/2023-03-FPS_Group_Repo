@@ -149,6 +149,7 @@ MonoBehaviour:
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
+  pushBackResolve: 5
   stamina: 3
   gunList: []
   shootRate: 0
@@ -156,6 +157,7 @@ MonoBehaviour:
   shootDamage: 0
   gunModel: {fileID: 1507762786949682061}
   gunMaterial: {fileID: 3677278215306520391}
+  bulletHitEffect: {fileID: 7947386562574004574, guid: 4f9d12591ca93c948947136461041b9b, type: 3}
   zoomMax: 30
   speedZoomIn: 3
   speedZoomOut: 6

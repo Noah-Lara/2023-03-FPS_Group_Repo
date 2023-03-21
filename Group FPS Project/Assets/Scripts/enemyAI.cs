@@ -23,6 +23,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int shootDist;
     [SerializeField] GameObject bullet;
     [SerializeField] int bulletSpeed;
+    [SerializeField] float bulletSpeedY;
     [SerializeField] Transform shootPos;
 
     [Header("-----Sword Stats-----")]
@@ -152,7 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage
     public void createBullet()
     {
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * bulletSpeed;
+        bulletClone.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(0,bulletSpeedY,0)) * bulletSpeed;
     }
 
     //Damages the Enemy
