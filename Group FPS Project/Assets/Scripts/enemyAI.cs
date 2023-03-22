@@ -42,7 +42,6 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     //Checks Game-manager to increase total number of enemies
     void Start()
     {
-        gameManager.instance.updateGameGoal(1);
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
     }
@@ -165,7 +164,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
-            gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.updateGameGoal(-1, gameObject);
             anim.SetBool("Dead", true);
             GetComponent<CapsuleCollider>().enabled = false;
             agent.enabled = false;

@@ -25,7 +25,10 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI bossRemainingText;
 
     [Header("-----Game Goals-----")]
+    List <GameObject> enemyList = new List<GameObject>();
     public int enemiesRemaining;
+
+
     public bool isPaused;
 
     // Start is called before the first frame update
@@ -70,16 +73,31 @@ public class gameManager : MonoBehaviour
     }
 
     //Tracks the number of enemies spawned in
-    public void updateGameGoal(int amount)
+    public void updateGameGoal(int amount, GameObject enemy)
     {
-        enemiesRemaining += amount;
-        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
+        if(amount == 1) {
+            enemyList.Add(enemy);
+        }
+        else
+        {
+            enemyList.Remove(enemy);
+            updateEnemyTotal(amount);
+        }
+
+        
+
+        enemiesRemainingText.text = enemyList.Count.ToString("F0");
 
         //The Goal(Subject to change)
         if (enemiesRemaining <= 0)
         {
             StartCoroutine(youWin());
         }
+    }
+
+    public void updateEnemyTotal (int total)
+    {
+        enemiesRemaining += total;
     }
     public void playerDead()
     {
