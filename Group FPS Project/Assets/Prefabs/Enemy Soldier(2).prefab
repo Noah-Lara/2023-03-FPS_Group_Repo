@@ -979,8 +979,8 @@ MonoBehaviour:
   shootRate: 0.5
   shootDist: 50
   bullet: {fileID: 2184292845693563087, guid: 811947417245e884fb938f383e63f71d, type: 3}
-  bulletSpeed: 25
-  bulletSpeedY: 1
+  bulletSpeed: 10
+  bulletSpeedY: 0.25
   shootPos: {fileID: 2056181277244571804}
   swordCol: {fileID: 6483801868608846494}
   playerInRange: 0
