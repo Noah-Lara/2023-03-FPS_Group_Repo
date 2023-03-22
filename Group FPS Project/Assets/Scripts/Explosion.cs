@@ -20,17 +20,18 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isHit)
+        IPhysics physicable = other.GetComponent<IPhysics>();
+        if (physicable != null && !isHit)
         {
             isHit = true;
-            gameManager.instance.playerScript.takeDamage(damage);
+            
             if (Pulling)
             {
-                gameManager.instance.playerScript.pushBackInput((transform.position - gameManager.instance.player.transform.position) * explosionAmount);
+               physicable.takeForce((transform.position - other.transform.position) * explosionAmount, damage);
             }
             else
             {
-                gameManager.instance.playerScript.pushBackInput((gameManager.instance.player.transform.position - transform.position) * explosionAmount);
+                physicable.takeForce((other.transform.position - transform.position) * explosionAmount, damage);
             }
         }
     }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
+    [SerializeField] Rigidbody rb;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -194,5 +195,21 @@ public class enemyAI : MonoBehaviour, IDamage
     public void swordColOff()
     {
         swordCol.enabled = false;
+    }
+
+    public void takeForce(Vector3 direction, int damage)
+    {
+        StartCoroutine(push(direction, damage));
+    }
+
+    IEnumerator push(Vector3 direction, int damage)
+    {
+        takeDamage(damage);
+        rb.isKinematic = false;
+        agent.enabled = false;
+        rb.velocity = direction * 0.3f;
+        yield return new WaitForSeconds(0.3f);
+        rb.isKinematic = true;
+        agent.enabled = true;
     }
 }

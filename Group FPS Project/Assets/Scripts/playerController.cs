@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
@@ -145,9 +145,10 @@ public class playerController : MonoBehaviour
         
     }
 
-    public void pushBackInput(Vector3 amount)
+    public void takeForce(Vector3 direction, int damage)
     {
-        pushBack += amount;
+        pushBack += direction;
+        takeDamage(damage);
     }
 
     void zoomCamera()
@@ -161,11 +162,7 @@ public class playerController : MonoBehaviour
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, zoomOrig, Time.deltaTime * speedZoomOut);
         }
     }
-    public void pusBackInput(Vector3 amount)
-    {
-        pushBack += amount;
-    }
-
+    
     IEnumerator shoot()
     {
         isShooting = true;
@@ -173,9 +170,10 @@ public class playerController : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
         {
-            if (hit.collider.GetComponent<IDamage>() != null)
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            if (damageable != null)
             {
-                hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                damageable.takeDamage(shootDamage);
             }
 
             Instantiate(bulletHitEffect, hit.point, bulletHitEffect.transform.rotation);
