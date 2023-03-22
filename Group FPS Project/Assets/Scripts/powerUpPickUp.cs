@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class powerUpPickUp : MonoBehaviour
 {
-    [SerializeField] powerUpPickUp powerUp;
+    [SerializeField] powerUpStats powerUp;
     
     private void OnTriggerEnter(Collider other)
     {
