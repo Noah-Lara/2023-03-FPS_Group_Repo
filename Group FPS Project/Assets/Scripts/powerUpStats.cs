@@ -9,4 +9,5 @@ public class powerUpStats : ScriptableObject
     public float shootRate;
     public int shootDist;
     public int shootDamage;
+    public GameObject bulletHitEffect;
 }

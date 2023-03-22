@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 612213215365447929}
   - component: {fileID: 612213215365447935}
   - component: {fileID: 612213215365447928}
+  - component: {fileID: 885530387}
   m_Layer: 6
   m_Name: Enemy Soldier
   m_TagString: Untagged
@@ -180,6 +181,7 @@ MonoBehaviour:
   model: {fileID: 612213215369678587}
   agent: {fileID: 612213215365447934}
   anim: {fileID: 612213215365447929}
+  rb: {fileID: 885530387}
   headPos: {fileID: 612213215358547473}
   HP: 10
   roamDist: 10
@@ -190,6 +192,7 @@ MonoBehaviour:
   shootDist: 50
   bullet: {fileID: 3728507817971866667, guid: 7343ff774c1a26e408699bd192812e54, type: 3}
   bulletSpeed: 25
+  bulletSpeedY: 0
   shootPos: {fileID: 5004082512014266593}
   swordCol: {fileID: 1892920035}
   playerInRange: 0
@@ -262,6 +265,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &885530387
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612213215358142623}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &612213215358142707
 GameObject:
   m_ObjectHideFlags: 0

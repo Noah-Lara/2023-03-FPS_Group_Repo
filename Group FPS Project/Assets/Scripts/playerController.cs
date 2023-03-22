@@ -48,7 +48,7 @@ public class playerController : MonoBehaviour, IPhysics
     int StaminaOrig;
     float playerSpeedOrig;
 
-    int selectedGun;
+    //int selectedGun;
     int selectedSpell;
 
     public bool isSprinting;
@@ -245,6 +245,7 @@ public class playerController : MonoBehaviour, IPhysics
         spellShootDamage = powerUpStat.shootDamage;
         spellShootDist = powerUpStat.shootDist;
         spellShootRate = powerUpStat.shootRate;
+        bulletHitEffect = powerUpStat.bulletHitEffect;
 
         selectedSpell = spellList.Count - 1;
     }
@@ -292,6 +293,7 @@ public class playerController : MonoBehaviour, IPhysics
         spellShootDamage = spellList[selectedSpell].shootDamage;
         spellShootDist = spellList[selectedSpell].shootDist;
         spellShootRate = spellList[selectedSpell].shootRate;
+        bulletHitEffect = spellList[selectedSpell].bulletHitEffect;
 
         selectedSpell = spellList.Count - 1;
     }

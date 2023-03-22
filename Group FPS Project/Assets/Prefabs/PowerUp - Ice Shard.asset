@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559d0cd63fd8d6a4d95ad6bdc5de62f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a7724a5ba5c8294dacb68ea44dff9d8, type: 3}
   m_Name: PowerUp - Ice Shard
   m_EditorClassIdentifier: 
-  shootRate: 0.25
-  shootDist: 300
+  shootRate: 0.5
+  shootDist: 200
   shootDamage: 1
+  bulletHitEffect: {fileID: 7947386562574004574, guid: 2db27fd6bedebb14492ff04013667e93, type: 3}
