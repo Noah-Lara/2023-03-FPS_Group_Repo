@@ -10,6 +10,7 @@ public class powerUpPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            gameManager.instance.playerScript.spellPickup(powerUp);
             Destroy(gameObject);
         }
     }

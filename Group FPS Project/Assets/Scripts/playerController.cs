@@ -18,16 +18,23 @@ public class playerController : MonoBehaviour, IPhysics
     [SerializeField] int pushBackResolve;
     [Range(1, 100)] [SerializeField] int stamina;
 
-    [Header("-----Gun Stats-----")]
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
-    [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
-    [SerializeField] int shootDamage;
-    [SerializeField] MeshFilter gunModel;
-    [SerializeField] MeshRenderer gunMaterial;
+    [Header("-----Power-Up Stats-----")]
+    [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
+    [SerializeField] float spellShootRate;
+    [SerializeField] int spellShootDist;
+    [SerializeField] int spellShootDamage;
     [SerializeField] GameObject bulletHitEffect;
 
-    [Header("-----Gun Stats-----")]
+    //[Header("-----Gun Stats-----")]
+    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
+    //[SerializeField] float shootRate;
+    //[SerializeField] int shootDist;
+    //[SerializeField] int shootDamage;
+    //[SerializeField] MeshFilter gunModel;
+    //[SerializeField] MeshRenderer gunMaterial;
+    //[SerializeField] GameObject bulletHitEffect;
+
+    [Header("-----Zoom-----")]
     [SerializeField] int zoomMax;
     [SerializeField] int speedZoomIn;
     [SerializeField] int speedZoomOut;
@@ -40,7 +47,10 @@ public class playerController : MonoBehaviour, IPhysics
     int HPOriginal;
     int StaminaOrig;
     float playerSpeedOrig;
+
     int selectedGun;
+    int selectedSpell;
+
     public bool isSprinting;
     float zoomOrig;
 
@@ -62,7 +72,8 @@ public class playerController : MonoBehaviour, IPhysics
     {
         movement();
         zoomCamera();
-        selectGun();
+        //selectGun();
+        selectSpell();
 
         if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
         { 
@@ -168,17 +179,17 @@ public class playerController : MonoBehaviour, IPhysics
         isShooting = true;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, spellShootDist))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if (damageable != null)
             {
-                damageable.takeDamage(shootDamage);
+                damageable.takeDamage(spellShootDamage);
             }
 
             Instantiate(bulletHitEffect, hit.point, bulletHitEffect.transform.rotation);
         }
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(spellShootRate);
         isShooting = false;
     }
 
@@ -213,41 +224,75 @@ public class playerController : MonoBehaviour, IPhysics
         gameManager.instance.playerStaminaBar.fillAmount = (float)stamina / (float)StaminaOrig;
     }
 
-    public void gunPickup(gunStats gunStat)
+    //public void gunPickup(gunStats gunStat)
+    //{
+    //    gunList.Add(gunStat);
+    //    
+    //    shootDamage = gunStat.shootDamage;
+    //    shootDist = gunStat.shootDist;
+    //    shootRate = gunStat.shootRate;
+    //
+    //    gunModel.sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunMaterial.sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //
+    //    selectedGun = gunList.Count - 1;
+    //}
+
+    public void spellPickup(powerUpStats powerUpStat)
     {
-        gunList.Add(gunStat);
-        
-        shootDamage = gunStat.shootDamage;
-        shootDist = gunStat.shootDist;
-        shootRate = gunStat.shootRate;
+        spellList.Add(powerUpStat);
 
-        gunModel.sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunMaterial.sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        spellShootDamage = powerUpStat.shootDamage;
+        spellShootDist = powerUpStat.shootDist;
+        spellShootRate = powerUpStat.shootRate;
 
-        selectedGun = gunList.Count - 1;
+        selectedSpell = spellList.Count - 1;
     }
 
-    void selectGun()
+    //void selectGun()
+    //{
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+    //    {
+    //        selectedGun++;
+    //        changeGun();
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+    //    {
+    //        selectedGun--;
+    //        changeGun();
+    //    }
+    //}
+
+    void selectSpell()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedSpell < spellList.Count - 1)
         {
-            selectedGun++;
-            changeGun();
+            selectedSpell++;
+            changeSpell();
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedSpell > 0)
         {
-            selectedGun--;
-            changeGun();
+            selectedSpell--;
+            changeSpell();
         }
     }
 
-    void changeGun()
-    {
-        shootDamage = gunList[selectedGun].shootDamage;
-        shootDist = gunList[selectedGun].shootDist;
-        shootRate = gunList[selectedGun].shootRate;
+    //void changeGun()
+    //{
+    //    shootDamage = gunList[selectedGun].shootDamage;
+    //    shootDist = gunList[selectedGun].shootDist;
+    //    shootRate = gunList[selectedGun].shootRate;
+    //
+    //    gunModel.sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+    //    gunMaterial.sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    //}
 
-        gunModel.sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-        gunMaterial.sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+    void changeSpell()
+    {
+        spellShootDamage = spellList[selectedSpell].shootDamage;
+        spellShootDist = spellList[selectedSpell].shootDist;
+        spellShootRate = spellList[selectedSpell].shootRate;
+
+        selectedSpell = spellList.Count - 1;
     }
 }
