@@ -27,8 +27,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float bulletSpeedY;
     [SerializeField] Transform shootPos;
 
-    [Header("-----Sword Stats-----")]
-    [SerializeField] Collider swordCol;
+    //[Header("-----Sword Stats-----")]
+    //[SerializeField] Collider swordCol;
 
     //Variables
     bool isShooting;
@@ -172,7 +172,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         else
         {
             anim.SetTrigger("Damage");
-            swordColOff();
+            //swordColOff();
             StartCoroutine(flashMat());
             agent.SetDestination(gameManager.instance.player.transform.position);
         }
@@ -186,15 +186,15 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         model.material.color = Color.white;
     }
 
-    public void swordColOn()
-    {
-        swordCol.enabled = true;
-    }
+    //public void swordColOn()
+    //{
+    //    swordCol.enabled = true;
+    //}
 
-    public void swordColOff()
-    {
-        swordCol.enabled = false;
-    }
+    //public void swordColOff()
+    //{
+    //    swordCol.enabled = false;
+    //}
 
     public void takeForce(Vector3 direction, int damage)
     {
