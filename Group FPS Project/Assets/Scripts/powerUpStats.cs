@@ -10,4 +10,5 @@ public class powerUpStats : ScriptableObject
     public int shootDist;
     public int shootDamage;
     public GameObject bulletHitEffect;
+    public GameObject spellModel;
 }

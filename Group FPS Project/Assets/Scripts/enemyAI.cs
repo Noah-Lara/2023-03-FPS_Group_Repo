@@ -204,11 +204,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator push(Vector3 direction, int damage)
     {
         takeDamage(damage);
-        rb.isKinematic = false;
-        agent.enabled = false;
         rb.velocity = direction * 0.3f;
         yield return new WaitForSeconds(0.3f);
-        rb.isKinematic = true;
-        agent.enabled = true;
     }
 }

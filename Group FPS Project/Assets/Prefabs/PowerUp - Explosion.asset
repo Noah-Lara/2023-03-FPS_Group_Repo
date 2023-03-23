@@ -16,3 +16,4 @@ MonoBehaviour:
   shootDist: 500
   shootDamage: 3
   bulletHitEffect: {fileID: 481281750024455628, guid: 6c85a4bbc1fae6f4c8e8597ace2eaeae, type: 3}
+  spellModel: {fileID: 3386100175492854539, guid: 6795385e68a93b54e8ee6edfa4a21b92, type: 3}

@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour, IPhysics
     [SerializeField] int spellShootDist;
     [SerializeField] int spellShootDamage;
     [SerializeField] GameObject bulletHitEffect;
+    [SerializeField] MeshFilter spellModel;
+    [SerializeField] MeshRenderer spellMaterial;
 
     [Header("-----Zoom-----")]
     [SerializeField] int zoomMax;
@@ -252,6 +254,9 @@ public class playerController : MonoBehaviour, IPhysics
         spellShootRate = powerUpStat.shootRate;
         bulletHitEffect = powerUpStat.bulletHitEffect;
 
+        spellModel.sharedMesh = powerUpStat.spellModel.GetComponent<MeshFilter>().sharedMesh;
+        spellMaterial.sharedMaterial = powerUpStat.spellModel.GetComponent<MeshRenderer>().sharedMaterial;
+
         selectedSpell = spellList.Count - 1;
     }
 
@@ -275,5 +280,8 @@ public class playerController : MonoBehaviour, IPhysics
         spellShootDist = spellList[selectedSpell].shootDist;
         spellShootRate = spellList[selectedSpell].shootRate;
         bulletHitEffect = spellList[selectedSpell].bulletHitEffect;
+
+        spellModel.sharedMesh = spellList[selectedSpell].spellModel.GetComponent<MeshFilter>().sharedMesh;
+        spellMaterial.sharedMaterial = spellList[selectedSpell].spellModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
