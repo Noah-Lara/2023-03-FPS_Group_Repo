@@ -26,15 +26,6 @@ public class playerController : MonoBehaviour, IPhysics
     [SerializeField] int spellShootDamage;
     [SerializeField] GameObject bulletHitEffect;
 
-    //[Header("-----Gun Stats-----")]
-    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
-    //[SerializeField] float shootRate;
-    //[SerializeField] int shootDist;
-    //[SerializeField] int shootDamage;
-    //[SerializeField] MeshFilter gunModel;
-    //[SerializeField] MeshRenderer gunMaterial;
-    //[SerializeField] GameObject bulletHitEffect;
-
     [Header("-----Zoom-----")]
     [SerializeField] int zoomMax;
     [SerializeField] int speedZoomIn;
@@ -81,7 +72,6 @@ public class playerController : MonoBehaviour, IPhysics
     {
         movement();
         zoomCamera();
-        //selectGun();
         selectSpell();
 
         if (!gameManager.instance.isPaused)//Fix the bug when player can shoot or jump once after pausing
@@ -253,20 +243,6 @@ public class playerController : MonoBehaviour, IPhysics
         gameManager.instance.playerStaminaBar.fillAmount = (float)stamina / (float)StaminaOrig;
     }
 
-    //public void gunPickup(gunStats gunStat)
-    //{
-    //    gunList.Add(gunStat);
-    //    
-    //    shootDamage = gunStat.shootDamage;
-    //    shootDist = gunStat.shootDist;
-    //    shootRate = gunStat.shootRate;
-    //
-    //    gunModel.sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
-    //    gunMaterial.sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-    //
-    //    selectedGun = gunList.Count - 1;
-    //}
-
     public void spellPickup(powerUpStats powerUpStat)
     {
         spellList.Add(powerUpStat);
@@ -278,20 +254,6 @@ public class playerController : MonoBehaviour, IPhysics
 
         selectedSpell = spellList.Count - 1;
     }
-
-    //void selectGun()
-    //{
-    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)
-    //    {
-    //        selectedGun++;
-    //        changeGun();
-    //    }
-    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)
-    //    {
-    //        selectedGun--;
-    //        changeGun();
-    //    }
-    //}
 
     void selectSpell()
     {
@@ -306,16 +268,6 @@ public class playerController : MonoBehaviour, IPhysics
             changeSpell();
         }
     }
-
-    //void changeGun()
-    //{
-    //    shootDamage = gunList[selectedGun].shootDamage;
-    //    shootDist = gunList[selectedGun].shootDist;
-    //    shootRate = gunList[selectedGun].shootRate;
-    //
-    //    gunModel.sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-    //    gunMaterial.sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-    //}
 
     void changeSpell()
     {

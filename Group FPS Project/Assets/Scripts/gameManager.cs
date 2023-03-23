@@ -84,8 +84,6 @@ public class gameManager : MonoBehaviour
             updateEnemyTotal(amount);
         }
 
-        
-
         enemiesRemainingText.text = enemyList.Count.ToString("F0");
 
         //The Goal(Subject to change)
