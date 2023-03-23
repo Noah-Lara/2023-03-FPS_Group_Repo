@@ -6,6 +6,7 @@ public class playerController : MonoBehaviour, IPhysics
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] AudioSource aud;
 
     [Header("-----Player Stats-----")]
     [Range(1, 100)] [SerializeField] int HP;
@@ -39,6 +40,13 @@ public class playerController : MonoBehaviour, IPhysics
     [SerializeField] int speedZoomIn;
     [SerializeField] int speedZoomOut;
 
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] audJump;
+    [Range (0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audWalk;
+    [Range(0, 1)] [SerializeField] float audWalkVol;
+    [SerializeField] AudioClip[] audDamage;
+    [Range(0, 1)] [SerializeField] float audDamageVol;
 
     int jumpCurrent;
     Vector3 move;
@@ -53,6 +61,7 @@ public class playerController : MonoBehaviour, IPhysics
 
     public bool isSprinting;
     float zoomOrig;
+    bool isPlayingFootsteps;
 
     Vector3 pushBack;
 
@@ -88,6 +97,9 @@ public class playerController : MonoBehaviour, IPhysics
     {
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
 
+        if (!isPlayingFootsteps && move.normalized.magnitude > 0.5f)
+            StartCoroutine(playFootSteps());
+
         if (Input.GetButtonDown("Sprint") && stamina != 0)
         {
             StartCoroutine(Dash());
@@ -107,6 +119,7 @@ public class playerController : MonoBehaviour, IPhysics
 
         if (Input.GetButtonDown("Jump") && jumpCurrent < jumpTimes)
         {
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
             jumpCurrent++;
             playerVelocity.y = jumpSpeed;
         }
@@ -154,6 +167,20 @@ public class playerController : MonoBehaviour, IPhysics
         playerSTMUiUpdate();
         yield return new WaitForSeconds(drainRate);
         
+    }
+
+    IEnumerator playFootSteps()
+    {
+        isPlayingFootsteps = true;
+
+        aud.PlayOneShot(audWalk[Random.Range(0, audWalk.Length)], audWalkVol);
+        
+        if (!isSprinting)
+            yield return new WaitForSeconds(0.5f);
+        else
+            yield return new WaitForSeconds(0.3f);
+
+        isPlayingFootsteps = false;
     }
 
     public void takeForce(Vector3 direction, int damage)
@@ -205,6 +232,8 @@ public class playerController : MonoBehaviour, IPhysics
     }
     public void takeDamage(int dmg)
     {
+
+        aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         HP -= dmg;
         playerHpUiUpdate();
         StartCoroutine(gameManager.instance.playerHit());
