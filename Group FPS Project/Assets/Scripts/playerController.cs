@@ -294,7 +294,5 @@ public class playerController : MonoBehaviour, IPhysics
         spellShootDist = spellList[selectedSpell].shootDist;
         spellShootRate = spellList[selectedSpell].shootRate;
         bulletHitEffect = spellList[selectedSpell].bulletHitEffect;
-
-        selectedSpell = spellList.Count - 1;
     }
 }
