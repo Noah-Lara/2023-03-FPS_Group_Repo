@@ -97,7 +97,7 @@ public class playerController : MonoBehaviour, IPhysics
     {
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
 
-        if (!isPlayingFootsteps && move.normalized.magnitude > 0.5f)
+        if (!isPlayingFootsteps && move.normalized.magnitude > 0.5f && controller.isGrounded)
             StartCoroutine(playFootSteps());
 
         if (Input.GetButtonDown("Sprint") && stamina != 0)
