@@ -183,7 +183,7 @@ MonoBehaviour:
   anim: {fileID: 612213215365447929}
   rb: {fileID: 885530387}
   headPos: {fileID: 612213215358547473}
-  HP: 10
+  HP: 5
   roamDist: 10
   sightAngle: 90
   playerFaceSpeed: 5
@@ -194,7 +194,6 @@ MonoBehaviour:
   bulletSpeed: 25
   bulletSpeedY: 0
   shootPos: {fileID: 5004082512014266593}
-  swordCol: {fileID: 1892920035}
   playerInRange: 0
 --- !u!195 &612213215365447934
 NavMeshAgent:

@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840473292167440364}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -144,8 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62df69bf130c5654f80bf113644f78f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 612213215358142623, guid: a814be51dae7b424dbb3648d9170fcd3, type: 3}
-  numToSpawn: 5
+  enemy: {fileID: 5873841662104099042, guid: ea8bb7980cc1a1c43941f3a138ca7e9e, type: 3}
+  numToSpawn: 3
   timer: 1
   spawnpos:
   - {fileID: 1840473292167440365}
@@ -160,8 +160,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 15
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 38
+  m_Center: {x: 0, y: 0, z: -20}
 --- !u!54 &1840473292423609153
 Rigidbody:
   m_ObjectHideFlags: 0

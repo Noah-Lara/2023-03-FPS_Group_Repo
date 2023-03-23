@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 8169813386262916275}
   - component: {fileID: 8169813386262916277}
   - component: {fileID: 1931979577}
+  - component: {fileID: 1503401789}
   m_Layer: 6
   m_Name: DemonGirl 1 Variant
   m_TagString: Untagged
@@ -984,15 +985,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8172423340961034730}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 166.90068, y: 5.6013618, z: -52.552597}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8169995919044449956}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8169813386262916273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,12 +1006,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e92e5669a2f6704db45d29d7eef129d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 8108751726983279002}
   agent: {fileID: 8169813386262916277}
   anim: {fileID: 1931979577}
-  rb: {fileID: 0}
+  rb: {fileID: 1503401789}
   headPos: {fileID: 8178198028013414826}
-  HP: 5
+  HP: 50
   roamDist: 10
   sightAngle: 180
   playerFaceSpeed: 8
@@ -1021,7 +1022,6 @@ MonoBehaviour:
   bulletSpeed: 12
   bulletSpeedY: 0
   shootPos: {fileID: 943570207}
-  swordCol: {fileID: 0}
   playerInRange: 0
 --- !u!136 &8169813386262916274
 CapsuleCollider:
@@ -1092,6 +1092,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!54 &1503401789
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8172423340961034730}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8172437728610819330
 GameObject:
   m_ObjectHideFlags: 0
