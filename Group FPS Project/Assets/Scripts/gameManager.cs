@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
@@ -84,18 +85,18 @@ public class gameManager : MonoBehaviour
             updateEnemyTotal(amount);
         }
 
-        enemiesRemainingText.text = enemyList.Count.ToString("F0");
-
         //The Goal(Subject to change)
         if (enemiesRemaining <= 0)
         {
             StartCoroutine(youWin());
         }
+        
     }
 
     public void updateEnemyTotal (int total)
     {
         enemiesRemaining += total;
+        enemiesRemainingText.text = enemiesRemaining.ToString("F0");
     }
     public void playerDead()
     {
@@ -118,4 +119,5 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         PlayerhitFlash.SetActive(false);
     }
+
 }

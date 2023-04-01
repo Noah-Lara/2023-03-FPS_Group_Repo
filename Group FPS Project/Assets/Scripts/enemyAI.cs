@@ -88,7 +88,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     bool canSeePlayer()
     {
         playerDir = (gameManager.instance.player.transform.position - headPos.position);
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x,0,playerDir.z), transform.forward);
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
         //Debug.Log(angleToPlayer);
         //Debug.DrawRay(headPos.position, playerDir);
 
@@ -153,7 +153,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     public void createBullet()
     {
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
-        bulletClone.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(0,bulletSpeedY,0)) * bulletSpeed;
+        bulletClone.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(0, bulletSpeedY, 0)) * bulletSpeed;
     }
 
     //Damages the Enemy
@@ -164,10 +164,11 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
-            gameManager.instance.updateGameGoal(-1, gameObject);
             anim.SetBool("Dead", true);
+            GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             agent.enabled = false;
+            gameManager.instance.updateGameGoal(-1, gameObject);
         }
         else
         {
@@ -196,15 +197,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     //    swordCol.enabled = false;
     //}
 
-    public void takeForce(Vector3 direction, int damage)
+    public void takeForce(Vector3 direction)
     {
-        StartCoroutine(push(direction, damage));
-    }
-
-    IEnumerator push(Vector3 direction, int damage)
-    {
-        takeDamage(damage);
         rb.velocity = direction * 0.3f;
-        yield return new WaitForSeconds(0.3f);
     }
 }

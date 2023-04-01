@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPhysics 
 {
-    void takeForce(Vector3 direcrion, int damage);
+    void takeForce(Vector3 direcrion);
 }

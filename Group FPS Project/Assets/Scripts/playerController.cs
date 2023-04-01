@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IPhysics
+public class playerController : MonoBehaviour, IPhysics, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
@@ -18,6 +18,7 @@ public class playerController : MonoBehaviour, IPhysics
     [Range(1, 70)] [SerializeField] int gravity;
     [SerializeField] int pushBackResolve;
     [Range(1, 100)] [SerializeField] int stamina;
+    [SerializeField] float uiBarSpeed;
 
     [Header("-----Power-Up Stats-----")]
     [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
@@ -64,7 +65,7 @@ public class playerController : MonoBehaviour, IPhysics
         playerSpeedOrig = playerSpeed;
         HPOriginal = HP;
         StaminaOrig =  stamina;
-        playerHpUiUpdate();
+        StartCoroutine(playerHpUiUpdate());
         respawnPlayer();
         zoomOrig = Camera.main.fieldOfView;
     }
@@ -146,7 +147,7 @@ public class playerController : MonoBehaviour, IPhysics
         if (stamina < StaminaOrig)
         {
           stamina ++;
-          playerSTMUiUpdate();
+          StartCoroutine(playerSTMUiUpdate());
         }
         yield return new WaitForSeconds(drainRate /2 );
         gameManager.instance.playerStaminaBar.transform.parent.gameObject.SetActive(false);
@@ -156,7 +157,7 @@ public class playerController : MonoBehaviour, IPhysics
     {
         //Subtracts point from the stamina pool
         stamina--;
-        playerSTMUiUpdate();
+        StartCoroutine(playerSTMUiUpdate());
         yield return new WaitForSeconds(drainRate);
         
     }
@@ -175,10 +176,9 @@ public class playerController : MonoBehaviour, IPhysics
         isPlayingFootsteps = false;
     }
 
-    public void takeForce(Vector3 direction, int damage)
+    public void takeForce(Vector3 direction)
     {
         pushBack += direction;
-        takeDamage(damage);
     }
 
     void zoomCamera()
@@ -217,17 +217,16 @@ public class playerController : MonoBehaviour, IPhysics
     {
         pushBack = Vector3.zero;
         HP = HPOriginal;
-        playerHpUiUpdate();
+        StartCoroutine(playerHpUiUpdate());
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
     public void takeDamage(int dmg)
     {
-
+        StartCoroutine(playerHpUiUpdate());
         aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Length)], audDamageVol);
         HP -= dmg;
-        playerHpUiUpdate();
         StartCoroutine(gameManager.instance.playerHit());
 
         if (HP <= 0)
@@ -235,14 +234,26 @@ public class playerController : MonoBehaviour, IPhysics
             gameManager.instance.playerDead();
         }
     }
-    public void playerHpUiUpdate()
+    IEnumerator playerHpUiUpdate()
     {
-        gameManager.instance.playerHPBar.fillAmount = (float)HP / (float)HPOriginal;
+        float timePassed = 0;
+        while (timePassed < uiBarSpeed)
+        {
+            gameManager.instance.playerHPBar.fillAmount = Mathf.Lerp(gameManager.instance.playerHPBar.fillAmount,((float)HP / (float)HPOriginal), timePassed / uiBarSpeed);
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
     }
 
-    public void playerSTMUiUpdate()
+    IEnumerator playerSTMUiUpdate()
     {
-        gameManager.instance.playerStaminaBar.fillAmount = (float)stamina / (float)StaminaOrig;
+        float timePassed = 0;
+        while (timePassed < uiBarSpeed)
+        {
+            gameManager.instance.playerStaminaBar.fillAmount = Mathf.Lerp(gameManager.instance.playerStaminaBar.fillAmount, ((float)stamina/ (float)StaminaOrig), timePassed / uiBarSpeed);
+            timePassed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     public void spellPickup(powerUpStats powerUpStat)

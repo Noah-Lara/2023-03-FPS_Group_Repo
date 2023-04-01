@@ -20,18 +20,27 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger || other is CharacterController) return;
+
         IPhysics physicable = other.GetComponent<IPhysics>();
-        if (physicable != null && !isHit)
+       
+
+        if (physicable != null)
         {
-            isHit = true;
             
             if (Pulling)
             {
-               physicable.takeForce((transform.position - other.transform.position) * explosionAmount, damage);
+               physicable.takeForce((transform.position - other.transform.position) * explosionAmount);
             }
             else
             {
-                physicable.takeForce((other.transform.position - transform.position) * explosionAmount, damage);
+                physicable.takeForce((other.transform.position - transform.position) * explosionAmount);
+            }
+
+            IDamage damagable = other.GetComponent<IDamage>();
+            if(damagable != null)
+            {
+                damagable.takeDamage(damage);
             }
         }
     }

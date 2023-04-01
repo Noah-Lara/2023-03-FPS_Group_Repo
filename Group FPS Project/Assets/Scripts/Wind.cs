@@ -10,7 +10,7 @@ public class Wind : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.takeForce(transform.forward * windSpeed, 0);
+            gameManager.instance.playerScript.takeForce(transform.forward * windSpeed);
         }
     }
 

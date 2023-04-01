@@ -147,12 +147,13 @@ MonoBehaviour:
   HP: 10
   playerSpeed: 5
   sprintMod: 2
-  drainRate: 5
+  drainRate: 10
   jumpTimes: 2
   jumpSpeed: 12
   gravity: 25
   pushBackResolve: 5
   stamina: 3
+  uiBarSpeed: 3
   spellList: []
   spellShootRate: 0
   spellShootDist: 0
