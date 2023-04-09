@@ -52,6 +52,8 @@ MonoBehaviour:
   damage: 1
   timer: 3
   hitEffect: {fileID: 7947386562574004574, guid: 4f9d12591ca93c948947136461041b9b, type: 3}
+  playerFaceSpeed: 0
+  headPos: {fileID: 4993499806947770101, guid: e1da36b811e910b4ebab13b2e3232f53, type: 3}
 --- !u!135 &3728507817971866664
 SphereCollider:
   m_ObjectHideFlags: 0

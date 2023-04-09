@@ -165,6 +165,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
     {
         GameObject bulletClone = Instantiate(bullet, shootPos.position, bullet.transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = (transform.forward + new Vector3(0, bulletSpeedY, 0)) * bulletSpeed;
+        
     }
 
     //Damages the Enemy
