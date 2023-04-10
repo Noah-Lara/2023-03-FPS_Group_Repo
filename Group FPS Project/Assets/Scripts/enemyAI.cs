@@ -31,6 +31,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     //[SerializeField] Collider swordCol;
 
     //Variables
+    ItemDrop drop;
     bool isShooting;
     public bool playerInRange;
     Vector3 playerDir;
@@ -165,6 +166,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
+            
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             agent.enabled = false;

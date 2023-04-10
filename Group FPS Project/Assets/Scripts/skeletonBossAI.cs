@@ -10,6 +10,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject itemModel;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -31,6 +32,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Collider swordCol;
 
     //Variables
+    ItemDrop drop;
     bool isShooting;
     public bool playerInRange;
     Vector3 playerDir;
@@ -177,6 +179,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
+            dropcoin();
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             agent.enabled = false;
@@ -220,5 +223,12 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
     public void takeForce(Vector3 direction)
     {
         rb.velocity = direction * 0.3f;
+    }
+    public void dropcoin()
+    {
+        Vector3 position = transform.position;//position of the enemy or destroyed object 
+        GameObject item = Instantiate(itemModel, position + new Vector3(0f, 6f, 0f), Quaternion.identity);// Item Drop
+        item.SetActive(true);//set the coin object to active
+        Destroy(item, 30f);//Destroy the item afte x amount of time
     }
 }
