@@ -521,22 +521,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 396233437752046086, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_text
-      value: Options Menu
-      objectReference: {fileID: 0}
-    - target: {fileID: 396233437752046086, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_fontSize
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 396233437752046086, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 396233437752046086, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_VerticalAlignment
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 825943933641316801, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
       propertyPath: m_Name
       value: UI
@@ -624,26 +608,6 @@ PrefabInstance:
     - target: {fileID: 825943933641316813, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2872956975919336061, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858593793742469557, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5722319535339573722, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 5722319535339573722, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 8137018655155462108, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13ab15d3456f3e143ab32a460157b18c, type: 3}
