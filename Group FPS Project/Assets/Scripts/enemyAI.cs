@@ -10,6 +10,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] Rigidbody rb;
+    [SerializeField] GameObject itemModel;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -18,6 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int sightAngle;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int waitTime;
+    [SerializeField] int experience;
 
     [Header("-----Gun Stats-----")]
     [SerializeField] float shootRate;
@@ -43,6 +45,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     //Checks Game-manager to increase total number of enemies
     void Start()
     {
+        gameManager.instance.updateEnemyTotal(1);
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
     }
@@ -193,7 +196,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         {
             StopAllCoroutines();
             anim.SetBool("Dead", true);
-            
+            dropcoin();
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             agent.enabled = false;
@@ -229,5 +232,14 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     public void takeForce(Vector3 direction)
     {
         rb.velocity = direction * 0.3f;
+    }
+    public void dropcoin()
+    {
+        Vector3 position = transform.position;//position of the enemy or destroyed object 
+        GameObject item = Instantiate(itemModel, position + new Vector3(0f, 6f, 0f), Quaternion.identity);// Item Drop
+        itemPickup itemScript = item.GetComponent<itemPickup>();
+        itemScript.ExpAmount = experience;
+        item.SetActive(true);//set the coin object to active
+        Destroy(item, 30f);//Destroy the item afte x amount of time
     }
 }

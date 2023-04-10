@@ -282,12 +282,14 @@ MonoBehaviour:
   agent: {fileID: 6790336330600581176}
   anim: {fileID: 6790336330593680055}
   rb: {fileID: 0}
+  itemModel: {fileID: 0}
   headPos: {fileID: 6790336330600598295}
   HP: 5
   roamDist: 5
   sightAngle: 360
   playerFaceSpeed: 50
   waitTime: 2
+  experience: 45
   shootRate: 6
   shootDist: 50
   bullet: {fileID: 4993499806947770096, guid: e1da36b811e910b4ebab13b2e3232f53, type: 3}

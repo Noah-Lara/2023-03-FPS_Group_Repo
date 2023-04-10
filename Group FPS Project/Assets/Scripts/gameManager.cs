@@ -24,12 +24,12 @@ public class gameManager : MonoBehaviour
     public Image playerHPBar;
     public Image playerStaminaBar;
     public TextMeshProUGUI enemiesRemainingText;
-    public TextMeshProUGUI bossRemainingText;
+    public TextMeshProUGUI totalExpText;
 
     [Header("-----Game Goals-----")]
     List <GameObject> enemyList = new List<GameObject>();
     public int enemiesRemaining;
-
+    [SerializeField] int totalExperience;
 
     public bool isPaused;
 
@@ -100,6 +100,11 @@ public class gameManager : MonoBehaviour
     {
         enemiesRemaining += total;
         enemiesRemainingText.text = enemiesRemaining.ToString("F0");
+    }
+    public void updatePlayerExperience(int total)
+    {
+        totalExperience += total;
+        totalExpText.text = totalExperience.ToString("F0");
     }
     public void playerDead()
     {
