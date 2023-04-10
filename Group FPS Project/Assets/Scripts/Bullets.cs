@@ -12,26 +12,21 @@ public class Bullets : MonoBehaviour
     bool isHit;
 
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        
-    }
-    private void Update()
-    {
-        
-    }
-    
-
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
+        IDamage damageable = other.GetComponent<IDamage>();
         if (other.CompareTag("Player") && !isHit)
         {
             isHit = true;
             gameManager.instance.playerScript.takeDamage(damage);
         }
-
+        //Damage for Clones
+        else if (other.CompareTag("PClone") && damageable != null)
+        {
+            isHit = true;
+            damageable.takeDamage(damage);
+        }
         Instantiate(hitEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }

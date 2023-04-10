@@ -34,8 +34,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     ItemDrop drop;
     bool isShooting;
     public bool playerInRange;
-    Vector3 playerDir;
-    float angleToPlayer;
+    Vector3 FacingDir;
+    float angleToAttackr;
     bool destinationChosen;
     float stoppingDistOrg;
     Vector3 startingPos;
@@ -73,6 +73,19 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
             if (playerInRange)
             {
+                //Prioritzes Clones over player when looking for targets
+                if (gameManager.instance.playerClone = GameObject.FindGameObjectWithTag("PClone"))
+                {
+                    FacingDir = (gameManager.instance.playerClone.transform.position - headPos.position).normalized;
+                    if (!GameObject.FindWithTag("PClone"))
+                    {
+                        StartCoroutine(roam());
+                    }
+                }
+                else
+                {
+                    FacingDir = (gameManager.instance.player.transform.position - headPos.position).normalized;
+                }
                 if (canSeePlayer())
                 {
                     StartCoroutine(roam());
@@ -88,15 +101,29 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     //Fuction that Vector3 vs sightangle to determine if player is in range and facing player
     bool canSeePlayer()
     {
-        playerDir = (gameManager.instance.player.transform.position - headPos.position);
-        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
-        //Debug.Log(angleToPlayer);
-        //Debug.DrawRay(headPos.position, playerDir);
+        FacingDir = (gameManager.instance.player.transform.position - headPos.position);
+        angleToAttackr = Vector3.Angle(new Vector3(FacingDir.x, 0, FacingDir.z), transform.forward);
 
         RaycastHit hit;
-        if (Physics.Raycast(headPos.position, playerDir, out hit))
+        if (Physics.Raycast(headPos.position, FacingDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+            if (hit.collider.CompareTag("PClone") && angleToAttackr <= sightAngle)
+            {
+                agent.stoppingDistance = stoppingDistOrg;
+                agent.SetDestination(gameManager.instance.playerClone.transform.position);
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    FacePlayer();
+                }
+
+                if (!isShooting)
+                {
+                    StartCoroutine(shoot());
+                }
+                return true;
+            }
+            else if (hit.collider.CompareTag("Player") && angleToAttackr <= sightAngle)
             {
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
@@ -137,8 +164,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     void FacePlayer()
     {
-        playerDir.y = 0;
-        Quaternion rot = Quaternion.LookRotation(playerDir);
+        FacingDir.y = 0;
+        Quaternion rot = Quaternion.LookRotation(FacingDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 

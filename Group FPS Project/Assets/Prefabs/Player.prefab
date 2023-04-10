@@ -154,6 +154,7 @@ MonoBehaviour:
   pushBackResolve: 5
   stamina: 3
   uiBarSpeed: 3
+  playerClone: {fileID: 3746063060659500264, guid: d02ae23893459e04cb645f54fcffc7e7, type: 3}
   spellList: []
   spellShootRate: 0
   spellShootDist: 0

@@ -10,6 +10,7 @@ public class gameManager : MonoBehaviour
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
+    public GameObject playerClone;
     public playerController playerScript;
     public GameObject playerSpawnPos;
 
@@ -44,6 +45,8 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Sets clones created from player as part of game manager
+        playerClone = GameObject.FindGameObjectWithTag("PClone");
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             isPaused = !isPaused;

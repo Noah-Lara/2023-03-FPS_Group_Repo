@@ -19,12 +19,13 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [SerializeField] int pushBackResolve;
     [Range(1, 100)] [SerializeField] int stamina;
     [SerializeField] float uiBarSpeed;
+    [SerializeField] GameObject playerClone;
 
     [Header("-----Power-Up Stats-----")]
     [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
     [SerializeField] float spellShootRate;
     [SerializeField] int spellShootDist;
-    [SerializeField] int spellShootDamage;
+    [SerializeField] public int spellShootDamage;
     [SerializeField] GameObject bulletHitEffect;
     [SerializeField] MeshFilter spellModel;
     [SerializeField] MeshRenderer spellMaterial;
@@ -83,6 +84,11 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
             {
                 StartCoroutine(shoot());
             }
+        }
+        //Checks if a clone already exist before making one
+        if (!GameObject.FindWithTag("PClone") && Input.GetButton("Ab"))
+        {
+            CreateClone();
         }
     }
     //Movement settings
@@ -294,5 +300,14 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
 
         spellModel.sharedMesh = spellList[selectedSpell].spellModel.GetComponent<MeshFilter>().sharedMesh;
         spellMaterial.sharedMaterial = spellList[selectedSpell].spellModel.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+    //Creates clone from clones orginal spawn location
+    void CreateClone()
+    {
+        if (Input.GetButton("Ab") && playerClone != null)
+        {
+            GameObject playerCloneVis = Instantiate(playerClone);
+            playerCloneVis = GameObject.FindWithTag("PClone");
+        }
     }
 }

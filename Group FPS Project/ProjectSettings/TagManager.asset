@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerSpawnPos
   - Gate
+  - PClone
+  - Enemy
   layers:
   - Default
   - TransparentFX
