@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
+    public GameObject pauseFSelectedButton;
+    public GameObject WinFSelectedButton;
+    public GameObject LoseFSelectedButton;
+    public GameObject MainFSelectedButton;
 
     [Header("-----Player Stuff-----")]
     public GameObject player;
@@ -55,7 +60,11 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(isPaused);
 
             if (isPaused)
+            {
                 pauseState();
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(pauseFSelectedButton);
+            }
             else
                 unpauseState();
         }
@@ -112,6 +121,8 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(LoseFSelectedButton);
     }
 
     IEnumerator youWin()
@@ -120,6 +131,8 @@ public class gameManager : MonoBehaviour
         pauseState();
         activeMenu = winMenu;
         activeMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(WinFSelectedButton);
     }
 
     public IEnumerator playerHit()

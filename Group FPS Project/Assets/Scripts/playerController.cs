@@ -306,7 +306,8 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     {
         if (Input.GetButton("Ab") && playerClone != null)
         {
-            GameObject playerCloneVis = Instantiate(playerClone);
+            Vector3 spawnPos = gameManager.instance.player.transform.position + gameManager.instance.player.transform.forward * 2;
+            GameObject playerCloneVis = Instantiate(playerClone, spawnPos, playerClone.transform.rotation);
             playerCloneVis = GameObject.FindWithTag("PClone");
         }
     }
