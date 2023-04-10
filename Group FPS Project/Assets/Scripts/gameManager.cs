@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject optionMenu;
     public GameObject checkPointMenu;
     public GameObject PlayerhitFlash;
     public Image playerHPBar;

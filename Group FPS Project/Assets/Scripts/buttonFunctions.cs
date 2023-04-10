@@ -16,6 +16,12 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.unpauseState();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public void options()
+    {
+        gameManager.instance.activeMenu = gameManager.instance.optionMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+        gameManager.instance.pauseMenu.SetActive(false);
+    }
     public void respawnPlayer()
     {
         gameManager.instance.unpauseState();
