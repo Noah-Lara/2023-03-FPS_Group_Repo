@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class buttonFunctions : MonoBehaviour
 {
     GameObject returnMenu;
+    GameObject returnToOptions;
     public void resume()
     {
         gameManager.instance.unpauseState();
@@ -38,5 +39,19 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.activeMenu.SetActive(false);
         gameManager.instance.activeMenu = returnMenu;
         gameManager.instance.activeMenu.SetActive(true);        
+    }
+    public void BackToOptions()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.activeMenu = returnToOptions;
+        gameManager.instance.activeMenu.SetActive(true);
+    }
+
+    public void AudioMenu()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        returnToOptions = gameManager.instance.activeMenu;
+        gameManager.instance.activeMenu = gameManager.instance.AudioMenu;
+        gameManager.instance.activeMenu.SetActive(true);
     }
 }

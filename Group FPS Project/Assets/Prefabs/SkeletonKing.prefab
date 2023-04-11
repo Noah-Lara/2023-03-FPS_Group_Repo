@@ -281,10 +281,9 @@ MonoBehaviour:
   model: {fileID: 6790336330589501365}
   agent: {fileID: 6790336330600581176}
   anim: {fileID: 6790336330593680055}
-  rb: {fileID: 0}
-  itemModel: {fileID: 0}
+  itemModel: {fileID: 8663631625633733573, guid: 31fb67e89becac54b9d25c812e07b32a, type: 3}
   headPos: {fileID: 6790336330600598295}
-  HP: 5
+  HP: 10
   roamDist: 5
   sightAngle: 360
   playerFaceSpeed: 50
