@@ -36,7 +36,7 @@ public class VolumeControl : MonoBehaviour
     }
     private void HanleSliderValueChanged(float value)
     {
-        mixer.SetFloat(volumeParameter, MathF.Log10(value) * multiplier);
+        mixer.SetFloat(volumeParameter, value);
         disableToggleEvent = true;
         toggle.isOn = slider.value > slider.minValue;
         disableToggleEvent = false;
