@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class itemPickup : MonoBehaviour
 {
+    [SerializeField] float speed;
     public int ExpAmount;
     // Start is called before the first frame update
     void Start()
@@ -14,7 +15,8 @@ public class itemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = Vector3.MoveTowards(transform.position, gameManager.instance.player.transform.position, speed * Time.deltaTime);
+        transform.forward = gameManager.instance.player.transform.position - transform.position;
     }
     private void OnTriggerEnter(Collider other)
     {

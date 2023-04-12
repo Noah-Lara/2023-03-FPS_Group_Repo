@@ -183,11 +183,12 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
-            anim.SetBool("Dead", true);
-            dropcoin();
+            anim.SetBool("Dead", true);            
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
+            dropcoin();
             agent.enabled = false;
+            StartCoroutine(destroyObject());
             gameManager.instance.updateGameGoal(-1, gameObject);
         }
         else
@@ -197,6 +198,11 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
             StartCoroutine(flashMat());
             agent.SetDestination(gameManager.instance.player.transform.position);
         }
+    }
+    IEnumerator destroyObject()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 
     //flashes a color on enemy to detect a hit
