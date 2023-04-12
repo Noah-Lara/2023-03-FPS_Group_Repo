@@ -30,7 +30,7 @@ public class VolumeControl : MonoBehaviour
         if (enableSound)
             slider.value = defaultSliderValue;
         else
-            slider.value = .0001f;
+            slider.value = slider.minValue;
 
     }
 
@@ -40,9 +40,9 @@ public class VolumeControl : MonoBehaviour
     }
     private void HanleSliderValueChanged(float value)
     {
-        mixer.SetFloat(volumeParameter, Mathf.Log10(value) * multiplier);
+        mixer.SetFloat(volumeParameter, value);
         disableToggleEvent = true;
-        toggle.isOn = slider.value > .0001f;
+        toggle.isOn = slider.value > slider.minValue;
         disableToggleEvent = false;
     }
   
