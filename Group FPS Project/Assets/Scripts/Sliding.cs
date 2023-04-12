@@ -15,12 +15,20 @@ public class Sliding : MonoBehaviour
     public float slideForce;
     public float slideTimer;
 
+    
+
 
     public float slideYScale;
     private float startYScale;
+    CharacterController control;
+    Vector3 move;
 
+    [Header("Crouch")]
+    public float crouchSpeed;
+    public float crouchYscale;
     [Header("Input")]
     public KeyCode slideKey = KeyCode.LeftControl;
+    public KeyCode crouchKey = KeyCode.C;
     private float horizontalInput;
     private float verticalInput;
 
@@ -43,7 +51,7 @@ public class Sliding : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-
+        
 
         if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0))
         {
@@ -53,6 +61,20 @@ public class Sliding : MonoBehaviour
         if (Input.GetKeyUp(slideKey) && sliding)
         {
             StopSlide();
+        }
+
+        if (Input.GetKeyDown(crouchKey))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+            gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerSpeed/2;
+           
+        }
+
+        if (Input.GetKeyUp(crouchKey))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerSpeedOrig;
         }
 
     }

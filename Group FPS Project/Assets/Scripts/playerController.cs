@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
 
     [Header("-----Player Stats-----")]
     [Range(1, 100)] [SerializeField] int HP;
-    [Range(1, 15)] [SerializeField] float playerSpeed;
+    [Range(1, 15)] [SerializeField] public float playerSpeed;
     [Range(2,5)] [SerializeField] float sprintMod;
     [Range(1, 10)] [SerializeField] int drainRate;
     [Range(1, 4)] [SerializeField] int jumpTimes;
@@ -21,10 +21,8 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [SerializeField] float uiBarSpeed;
     [SerializeField] GameObject playerClone;
     
-    [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
-    public float startYscale;
+   
+    
 
     [Header("-----Power-Up Stats-----")]
     [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
@@ -54,7 +52,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     bool isShooting;
     int HPOriginal;
     int StaminaOrig;
-    float playerSpeedOrig;
+    public float playerSpeedOrig;
 
     //int selectedGun;
     int selectedSpell;
@@ -62,6 +60,9 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     public bool isSprinting;
     float zoomOrig;
     bool isPlayingFootsteps;
+   
+   
+
 
     Vector3 pushBack;
 
@@ -75,7 +76,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
         respawnPlayer();
         zoomOrig = Camera.main.fieldOfView;
 
-        
+       
 
     }
 
@@ -135,8 +136,12 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         //Debug.Log(move);//TrackPlayer Movement Speed
+
+
+        
     }
 
+  
     
     IEnumerator Dash()
     {

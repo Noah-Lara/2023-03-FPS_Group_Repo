@@ -454,7 +454,10 @@ MonoBehaviour:
   slideForce: 200
   slideTimer: 0
   slideYScale: 0.5
+  crouchSpeed: 1
+  crouchYscale: 0.5
   slideKey: 306
+  crouchKey: 99
 --- !u!4 &1165140460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4569225875141538480, guid: d3166bc633bc299459110062018ab5b4, type: 3}
@@ -524,8 +527,16 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
+      propertyPath: crouchSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
       propertyPath: shootDamage
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569225875141538482, guid: d3166bc633bc299459110062018ab5b4, type: 3}
+      propertyPath: crouchYScale
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4569225875141538485, guid: d3166bc633bc299459110062018ab5b4, type: 3}
       propertyPath: m_Name
