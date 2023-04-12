@@ -20,6 +20,8 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPos;
 
     [Header("-----UI-----")]
+    public AudioSource aud;
+    public AudioClip audClip;
     public GameObject activeMenu;
     public GameObject pauseMenu;
     public GameObject winMenu;
