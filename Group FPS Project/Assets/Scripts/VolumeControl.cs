@@ -19,7 +19,7 @@ public class VolumeControl : MonoBehaviour
         defaultSliderValue = slider.value;
         slider.onValueChanged.AddListener(HanleSliderValueChanged);
         toggle.onValueChanged.AddListener(HandleToggleValueChange);
-        slider.value = PlayerPrefs.GetFloat(volumeParameter, slider.value);
+        
     }
 
     private void HandleToggleValueChange(bool enableSound)
