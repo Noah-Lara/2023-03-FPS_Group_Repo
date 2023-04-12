@@ -10,7 +10,6 @@ public class VolumeControl : MonoBehaviour
     [SerializeField] string volumeParameter = "MasterVolume";
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider slider;
-    [SerializeField] float multiplier = 30f;
     [SerializeField] private Toggle toggle;
     private bool disableToggleEvent;
     private void Awake()
