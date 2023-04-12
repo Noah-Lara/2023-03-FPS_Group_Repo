@@ -14,7 +14,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [Range(2,5)] [SerializeField] float sprintMod;
     [Range(1, 10)] [SerializeField] int drainRate;
     [Range(1, 4)] [SerializeField] int jumpTimes;
-    [Range(1, 15)] [SerializeField] int jumpSpeed;
+    [Range(1, 15)] [SerializeField] public int jumpSpeed;
     [Range(1, 70)] [SerializeField] int gravity;
     [SerializeField] int pushBackResolve;
     [Range(1, 100)] [SerializeField] int stamina;

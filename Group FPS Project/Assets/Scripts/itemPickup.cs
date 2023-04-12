@@ -9,7 +9,7 @@ public class itemPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,10 +20,17 @@ public class itemPickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Player")
+        if (other.name == "Player")
         {
             gameManager.instance.updatePlayerExperience(ExpAmount);
             Destroy(gameObject);
         }
-    }   
+
+        if (other.name == "Player")
+        {
+            gameManager.instance.playerScript.jumpSpeed = gameManager.instance.playerScript.jumpSpeed * 2;
+        }
+    }
+    
 }
+   
