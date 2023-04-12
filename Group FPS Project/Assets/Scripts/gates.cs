@@ -9,6 +9,8 @@ public class gates : MonoBehaviour
     [SerializeField] int MoveDist_X;
     [SerializeField] int MoveDist_Y;
     [SerializeField] int MoveDist_Z;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip clip;
 
     Vector3 startPos;
     Vector3 dest;
@@ -24,7 +26,7 @@ public class gates : MonoBehaviour
     {
         if(gameManager.instance.enemiesRemaining == 1)
         {
-          StartCoroutine(RaiseGate());
+            StartCoroutine(RaiseGate());
         }
     }
 
