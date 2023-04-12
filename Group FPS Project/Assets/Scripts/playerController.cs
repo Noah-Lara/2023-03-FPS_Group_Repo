@@ -20,6 +20,11 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [Range(1, 100)] [SerializeField] int stamina;
     [SerializeField] float uiBarSpeed;
     [SerializeField] GameObject playerClone;
+    
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public float crouchYScale;
+    public float startYscale;
 
     [Header("-----Power-Up Stats-----")]
     [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
@@ -69,6 +74,9 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
         StartCoroutine(playerHpUiUpdate());
         respawnPlayer();
         zoomOrig = Camera.main.fieldOfView;
+
+        
+
     }
 
     // Update is called once per frame
