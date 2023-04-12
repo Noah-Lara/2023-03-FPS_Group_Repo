@@ -11,21 +11,26 @@ public class VolumeControl : MonoBehaviour
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider slider;
     [SerializeField] private Toggle toggle;
+    [SerializeField] float multiplier = 40f;
+    float defaultSliderValue;
     private bool disableToggleEvent;
     private void Awake()
     {
+        defaultSliderValue = slider.value;
         slider.onValueChanged.AddListener(HanleSliderValueChanged);
         toggle.onValueChanged.AddListener(HandleToggleValueChange);
+        slider.value = PlayerPrefs.GetFloat(volumeParameter, slider.value);
     }
 
     private void HandleToggleValueChange(bool enableSound)
     {
         if (disableToggleEvent)
-            return; 
+            return;
+
         if (enableSound)
-            slider.value = slider.maxValue;
+            slider.value = defaultSliderValue;
         else
-            slider.value = slider.minValue;
+            slider.value = .0001f;
 
     }
 
@@ -35,9 +40,9 @@ public class VolumeControl : MonoBehaviour
     }
     private void HanleSliderValueChanged(float value)
     {
-        mixer.SetFloat(volumeParameter, value);
+        mixer.SetFloat(volumeParameter, Mathf.Log10(value) * multiplier);
         disableToggleEvent = true;
-        toggle.isOn = slider.value > slider.minValue;
+        toggle.isOn = slider.value > .0001f;
         disableToggleEvent = false;
     }
   

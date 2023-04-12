@@ -45,6 +45,8 @@ public class gameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        activeMenu = AudioMenu;
+        activeMenu = null;
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
@@ -54,6 +56,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //Sets clones created from player as part of game manager
         playerClone = GameObject.FindGameObjectWithTag("PClone");
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
