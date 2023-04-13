@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
         isSpawning = true;
 
         GameObject enemyClone = Instantiate(enemy, spawnpos[Random.Range(0, spawnpos.Length)].transform.position, enemy.transform.rotation);
-        gameManager.instance.updateGameGoal(1, enemyClone);
+        gameManager.instance.updateGameGoal(0, enemyClone);
         numSpawned++;
 
         yield return new WaitForSeconds(0);

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -96,6 +97,7 @@ public class gameManager : MonoBehaviour
     //Tracks the number of enemies spawned in
     public void updateGameGoal(int amount, GameObject enemy)
     {
+        Scene scene = SceneManager.GetActiveScene();
         if(amount == 1) {
             enemyList.Add(enemy);
         }
@@ -106,10 +108,11 @@ public class gameManager : MonoBehaviour
         }
 
         //The Goal(Subject to change)
-        if (enemiesRemaining <= 0)
-        {
-            //StartCoroutine(youWin());
-        }
+
+            if (enemiesRemaining <= 0 && scene.name == "Level 2")
+            {
+                StartCoroutine(youWin());
+            }
         
     }
 
@@ -132,16 +135,16 @@ public class gameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(LoseFSelectedButton);
     }
 
-    //IEnumerator youWin()
-    //{
-    //    yield return new WaitForSeconds(3);
-    //    pauseState();
-    //    activeMenu = winMenu;
-    //    activeMenu.SetActive(true);
-    //    EventSystem.current.SetSelectedGameObject(null);
-    //    EventSystem.current.SetSelectedGameObject(WinFSelectedButton);
-        
-    //}
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(3);
+        pauseState();
+        activeMenu = winMenu;
+        activeMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(WinFSelectedButton);
+
+    }
 
     public IEnumerator playerHit()
     {

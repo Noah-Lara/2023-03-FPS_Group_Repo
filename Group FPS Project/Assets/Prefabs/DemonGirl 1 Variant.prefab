@@ -1010,12 +1010,14 @@ MonoBehaviour:
   agent: {fileID: 8169813386262916277}
   anim: {fileID: 1931979577}
   rb: {fileID: 1503401789}
+  itemModel: {fileID: 8663631625633733573, guid: 31fb67e89becac54b9d25c812e07b32a, type: 3}
   headPos: {fileID: 8178198028013414826}
   HP: 50
   roamDist: 10
   sightAngle: 180
   playerFaceSpeed: 8
   waitTime: 5
+  experience: 0
   shootRate: 1
   shootDist: 50
   bullet: {fileID: 3728507817971866667, guid: 7343ff774c1a26e408699bd192812e54, type: 3}
