@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] int totalExperience;
 
     public bool isPaused;
+    public bool loadNextlevel;
 
     // Start is called before the first frame update
     void Awake()
@@ -107,7 +108,7 @@ public class gameManager : MonoBehaviour
         //The Goal(Subject to change)
         if (enemiesRemaining <= 0)
         {
-            StartCoroutine(youWin());
+            //StartCoroutine(youWin());
         }
         
     }
@@ -131,15 +132,16 @@ public class gameManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(LoseFSelectedButton);
     }
 
-    IEnumerator youWin()
-    {
-        yield return new WaitForSeconds(3);
-        pauseState();
-        activeMenu = winMenu;
-        activeMenu.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(WinFSelectedButton);
-    }
+    //IEnumerator youWin()
+    //{
+    //    yield return new WaitForSeconds(3);
+    //    pauseState();
+    //    activeMenu = winMenu;
+    //    activeMenu.SetActive(true);
+    //    EventSystem.current.SetSelectedGameObject(null);
+    //    EventSystem.current.SetSelectedGameObject(WinFSelectedButton);
+        
+    //}
 
     public IEnumerator playerHit()
     {
