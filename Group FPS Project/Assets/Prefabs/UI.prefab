@@ -1840,7 +1840,6 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 1369166911}
   toggle: {fileID: 6059746035903323317}
-  multiplier: 30
 --- !u!114 &1369166911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1885,8 +1884,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1349336781}
   m_HandleRect: {fileID: 334276143}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0.8
   m_OnValueChanged:
@@ -3738,6 +3737,7 @@ MonoBehaviour:
   enemiesRemaining: 0
   totalExperience: 0
   isPaused: 0
+  loadNextlevel: 0
 --- !u!82 &740221266
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7168,7 +7168,6 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 8552445311330217540}
   toggle: {fileID: 4468152143234388781}
-  multiplier: 30
 --- !u!114 &8552445311330217540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7213,8 +7212,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 7399503721271968735}
   m_HandleRect: {fileID: 6965420430713846666}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0.8
   m_OnValueChanged:
@@ -8207,7 +8206,6 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 2472657468813173414}
   toggle: {fileID: 5718998475871834260}
-  multiplier: 30
 --- !u!114 &2472657468813173414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8252,8 +8250,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 4220484404533604165}
   m_HandleRect: {fileID: 4742708991019274062}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0.8
   m_OnValueChanged:
