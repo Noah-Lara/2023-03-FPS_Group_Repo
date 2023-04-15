@@ -26,7 +26,7 @@ public class itemPickup : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (other.name == "Player")
+        if (other.name == "Player" && gameObject.name == "Power_Up")
         {
             gameManager.instance.playerScript.jumpSpeed = gameManager.instance.playerScript.jumpSpeed * 2;
         }
