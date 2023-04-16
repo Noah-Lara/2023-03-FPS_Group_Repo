@@ -11,7 +11,10 @@ public class Bullets : MonoBehaviour
 
     bool isHit;
 
-
+    private void Start()
+    {
+        Destroy(gameObject, timer);
+    }
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {

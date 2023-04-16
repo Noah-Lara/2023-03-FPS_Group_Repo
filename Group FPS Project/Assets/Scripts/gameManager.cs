@@ -39,8 +39,7 @@ public class gameManager : MonoBehaviour
     [Header("-----Game Goals-----")]
     List <GameObject> enemyList = new List<GameObject>();
     public int enemiesRemaining;
-    [SerializeField] int totalExperience;
-
+    [SerializeField] int totalExperience;   
     public bool isPaused;
     public bool loadNextlevel;
 

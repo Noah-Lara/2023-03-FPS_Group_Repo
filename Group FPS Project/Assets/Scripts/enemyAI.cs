@@ -19,7 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int sightAngle;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int waitTime;
-    [SerializeField] int experience;
+    [SerializeField] public int experience;
 
     [Header("-----Gun Stats-----")]
     [SerializeField] float shootRate;
