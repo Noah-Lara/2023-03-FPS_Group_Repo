@@ -114,7 +114,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
                     FacePlayer();
                 }
 
-                if (agent.remainingDistance < 6)
+                if (agent.remainingDistance < 3)
                 {
                     anim.SetTrigger("MeleeAttack1");
                 }

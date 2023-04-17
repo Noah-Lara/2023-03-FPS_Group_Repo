@@ -27,11 +27,10 @@ public class Spawner : MonoBehaviour
     {
         if (playerInTrigger)
         {
-            if (playerInTrigger)
-            {
+            
                 if (!isSpawning && numSpawned < numToSpawn)
                     StartCoroutine(spawn());
-            }
+            
         }
       
     }
@@ -43,7 +42,7 @@ public class Spawner : MonoBehaviour
             playerInTrigger = true;
             if (numSpawned >= numToSpawn)
             {
-                wave++;
+                
                 playerInTrigger = false;
                 StartCoroutine(nextWave());
             }
@@ -54,7 +53,7 @@ public class Spawner : MonoBehaviour
     {
         isSpawning = true;
             GameObject enemyClone = Instantiate(enemy, spawnpos[Random.Range(0, spawnpos.Length)].transform.position, enemy.transform.rotation);
-            gameManager.instance.updateGameGoal(0, enemyClone);
+            //gameManager.instance.updateGameGoal(0, enemyClone);
             numSpawned++;
             yield return new WaitForSeconds(timer);
         isSpawning = false;
@@ -64,8 +63,8 @@ public class Spawner : MonoBehaviour
         if(wave <= totalWaves)
         {
             numToSpawn = numToSpawn * 1.2f;
-            yield return new WaitForSeconds(20);
-            
+            yield return new WaitForSeconds(35);
+            wave++;
             numSpawned = 0;
             playerInTrigger = true;
         }
