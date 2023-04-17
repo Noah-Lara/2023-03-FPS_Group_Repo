@@ -213,7 +213,15 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     }
     IEnumerator destroyObject()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
+        float etime = 0;
+        while (gameObject.transform.localScale.x > .5)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(-1, -1, -1), etime/5);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, -1, transform.position.z), etime / 5);
+            etime += Time.deltaTime;
+            yield return new WaitForSeconds(.05f);
+        }
         Destroy(gameObject);
     }
 
