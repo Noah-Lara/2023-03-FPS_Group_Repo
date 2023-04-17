@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
 {
@@ -14,12 +15,14 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
-    [SerializeField] int HP;
+    [SerializeField] float HP;
     [SerializeField] int roamDist;
     [SerializeField] int sightAngle;
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int waitTime;
     [SerializeField] int experience;
+    public GameObject healtBarUI;
+    public Slider slider;
 
     [Header("-----Sword Stats-----")]
     [SerializeField] Collider swordCol;
@@ -27,7 +30,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     //Variables
     ItemDrop drop;
     bool isShooting;
-    int hpOriginal;
+    public float hpOriginal;
     public bool playerInRange;
     Vector3 playerDir;
     float angleToPlayer;
@@ -39,6 +42,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         hpOriginal = HP;
+        slider.value = CalculateHealth();
         //gameManager.instance.updateEnemyTotal(1);
         stoppingDistOrg = agent.stoppingDistance;
         startingPos = transform.position;
@@ -64,6 +68,12 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     // Update is called once per frame
     void Update()
     {
+        slider.value = CalculateHealth();
+
+        if(HP < hpOriginal)
+        {
+            healtBarUI.SetActive(true);
+        }
         if (agent.isActiveAndEnabled)
         {
             anim.SetFloat("Speed", agent.velocity.normalized.magnitude);
@@ -81,7 +91,10 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
             }
         }
     }
-
+    float CalculateHealth()
+    {
+        return HP / hpOriginal;
+    }
     //Fuction that Vector3 vs sightangle to determine if player is in range and facing player
     bool canSeePlayer()
     {
