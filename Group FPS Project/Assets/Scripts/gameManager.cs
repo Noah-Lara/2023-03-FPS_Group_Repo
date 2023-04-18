@@ -42,18 +42,18 @@ public class gameManager : MonoBehaviour
     [SerializeField] int totalExperience;   
     public bool isPaused;
     public bool loadNextlevel;
-
+    VolumeControl volume;
     // Start is called before the first frame update
     void Awake()
-    {
-        activeMenu = AudioMenu;
+    {        
+        activeMenu = AudioMenu;        
         activeMenu = null;
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         playerSpawnPos = GameObject.FindGameObjectWithTag("PlayerSpawnPos");
     }
-
+    
     // Update is called once per frame
     void Update()
     {

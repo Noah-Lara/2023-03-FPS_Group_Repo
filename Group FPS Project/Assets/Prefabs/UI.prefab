@@ -474,8 +474,8 @@ RectTransform:
   m_Father: {fileID: 1069605764}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1588,7 +1588,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1793,6 +1793,7 @@ GameObject:
   - component: {fileID: 5707834179525903211}
   - component: {fileID: 1369166911}
   - component: {fileID: 1466678664676015576}
+  - component: {fileID: 547109984}
   m_Layer: 5
   m_Name: Music Slider
   m_TagString: Untagged
@@ -1840,6 +1841,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 1369166911}
   toggle: {fileID: 6059746035903323317}
+  defaultSliderValue: 0
 --- !u!114 &1369166911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,6 +1907,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aud: {fileID: 740221266}
   audClip: {fileID: 8300000, guid: 9c9cd8ee1b76a8e429fdf793cd69ca03, type: 3}
+--- !u!114 &547109984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1369166909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fea3cf6cc751447890a0fc3d92e7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: MusicVolume
+  mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
+  slider: {fileID: 1369166911}
+  toggle: {fileID: 6059746035903323317}
+  defaultSliderValue: 0
 --- !u!1 &1459292579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,7 +5776,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5967,8 +5986,8 @@ RectTransform:
   m_Father: {fileID: 1324627303393566893}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6359,7 +6378,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7120,6 +7139,7 @@ GameObject:
   - component: {fileID: 5671025535681372640}
   - component: {fileID: 8552445311330217540}
   - component: {fileID: 2013725218453917375}
+  - component: {fileID: 530343112}
   m_Layer: 5
   m_Name: SFX Slider
   m_TagString: Untagged
@@ -7168,6 +7188,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 8552445311330217540}
   toggle: {fileID: 4468152143234388781}
+  defaultSliderValue: 0
 --- !u!114 &8552445311330217540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7233,6 +7254,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aud: {fileID: 740221266}
   audClip: {fileID: 8300000, guid: 9c9cd8ee1b76a8e429fdf793cd69ca03, type: 3}
+--- !u!114 &530343112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4758601331280072986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fea3cf6cc751447890a0fc3d92e7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: SFXVolume
+  mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
+  slider: {fileID: 8552445311330217540}
+  toggle: {fileID: 4468152143234388781}
+  defaultSliderValue: 0
 --- !u!1 &4781932985311245050
 GameObject:
   m_ObjectHideFlags: 0
@@ -7667,8 +7705,8 @@ RectTransform:
   m_Father: {fileID: 6816884131710519351}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.8, y: 0}
-  m_AnchorMax: {x: 0.8, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8158,6 +8196,7 @@ GameObject:
   - component: {fileID: 2703087154965905397}
   - component: {fileID: 2472657468813173414}
   - component: {fileID: 4018080588077109565}
+  - component: {fileID: 635359309}
   m_Layer: 5
   m_Name: Master Slider
   m_TagString: Untagged
@@ -8206,6 +8245,7 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
   slider: {fileID: 2472657468813173414}
   toggle: {fileID: 5718998475871834260}
+  defaultSliderValue: 0
 --- !u!114 &2472657468813173414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8271,6 +8311,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aud: {fileID: 740221266}
   audClip: {fileID: 8300000, guid: 9c9cd8ee1b76a8e429fdf793cd69ca03, type: 3}
+--- !u!114 &635359309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266664514336254780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fea3cf6cc751447890a0fc3d92e7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeParameter: MasterVolume
+  mixer: {fileID: 24100000, guid: eee705ed0055a4c44ab0fd0c9eb00408, type: 2}
+  slider: {fileID: 2472657468813173414}
+  toggle: {fileID: 5718998475871834260}
+  defaultSliderValue: 0
 --- !u!1 &7403506256286152821
 GameObject:
   m_ObjectHideFlags: 0

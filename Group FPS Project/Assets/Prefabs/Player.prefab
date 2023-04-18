@@ -222,6 +222,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7c74dcacbba9c5e4e961be833aec84ae, type: 3}
   - {fileID: 8300000, guid: 0ebcef240e75c6c43b83d0938e1a5a79, type: 3}
   audDamageVol: 0.25
+  HPOriginal: 0
   playerSpeedOrig: 0
   isSprinting: 0
 --- !u!143 &4569225875141538479

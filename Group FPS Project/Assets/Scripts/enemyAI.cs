@@ -14,7 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
-    [SerializeField] int HP;
+    [SerializeField] int HP;    
     [SerializeField] int roamDist;
     [SerializeField] int sightAngle;
     [SerializeField] int playerFaceSpeed;

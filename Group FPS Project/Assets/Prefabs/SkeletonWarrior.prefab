@@ -1349,8 +1349,11 @@ MonoBehaviour:
   agent: {fileID: 8733860355227149499}
   anim: {fileID: 8733860355227149494}
   itemModel: {fileID: 8663631625633733573, guid: 31fb67e89becac54b9d25c812e07b32a, type: 3}
+  itemToCollect:
+  - {fileID: 8952088404014583381, guid: 9582dd80353a0d8448841d22b0172e45, type: 3}
+  - {fileID: 3307366907386669369, guid: 99edec6cbc923844a87cb8092de7be27, type: 3}
   headPos: {fileID: 1399487013808814297}
-  HP: 20
+  HP: 5
   roamDist: 5
   sightAngle: 90
   playerFaceSpeed: 15
@@ -1391,7 +1394,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 9
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

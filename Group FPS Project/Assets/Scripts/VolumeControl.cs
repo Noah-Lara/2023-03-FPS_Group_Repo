@@ -7,19 +7,18 @@ using UnityEngine.UI;
 
 public class VolumeControl : MonoBehaviour
 {
-    [SerializeField] string volumeParameter = "MasterVolume";
+    [SerializeField] public string volumeParameter = "MasterVolume";
     [SerializeField] AudioMixer mixer;
-    [SerializeField] Slider slider;
+    [SerializeField] public Slider slider;
     [SerializeField] private Toggle toggle;
-    float defaultSliderValue;
+    public float defaultSliderValue;
     private bool disableToggleEvent;
     private void Awake()
     {
         defaultSliderValue = slider.value;
         slider.onValueChanged.AddListener(HanleSliderValueChanged);
         toggle.onValueChanged.AddListener(HandleToggleValueChange);
-        
-    }
+    }    
 
     private void HandleToggleValueChange(bool enableSound)
     {
@@ -49,7 +48,9 @@ public class VolumeControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat(volumeParameter, slider.value); 
+        slider.value = PlayerPrefs.GetFloat(volumeParameter, slider.value);       
+        
+        
     }
 
     // Update is called once per frame

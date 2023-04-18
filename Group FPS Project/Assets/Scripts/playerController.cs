@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [SerializeField] AudioSource aud;
 
     [Header("-----Player Stats-----")]
-    [Range(1, 100)] [SerializeField] int HP;
+    [Range(1, 100)] [SerializeField] public int HP;
     [Range(1, 15)] [SerializeField] public float playerSpeed;
     [Range(2,5)] [SerializeField] float sprintMod;
     [Range(1, 10)] [SerializeField] int drainRate;
@@ -50,7 +50,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     Vector3 move;
     Vector3 playerVelocity;
     bool isShooting;
-    int HPOriginal;
+    public int HPOriginal;
     int StaminaOrig;
     public float playerSpeedOrig;
 
@@ -240,6 +240,28 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
+    }
+    public void recoverHealth(float amount)
+    {
+        StartCoroutine(playerHpUiUpdate());
+        if (HP < HPOriginal)
+        {
+            HP += (int)(HPOriginal * amount);
+            if (HP > HPOriginal)
+                HP = HPOriginal;
+        }        
+        
+    }
+    public void recoverStamina(float amount)
+    {
+        StartCoroutine(playerSTMUiUpdate());
+        if (stamina < StaminaOrig)
+        {
+            stamina += (int)(StaminaOrig * amount);
+            if (stamina > StaminaOrig)
+                stamina = StaminaOrig;
+        }
+
     }
     public void takeDamage(int dmg)
     {

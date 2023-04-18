@@ -12,6 +12,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Animator anim;
     //[SerializeField] Rigidbody rb;
     [SerializeField] GameObject itemModel;
+    [SerializeField] GameObject[] itemToCollect;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -29,6 +30,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
 
     //Variables
     ItemDrop drop;
+    
     bool isShooting;
     public float hpOriginal;
     public bool playerInRange;
@@ -167,6 +169,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
             dropcoin();
+            dropItem();
             agent.enabled = false;
             StartCoroutine(destroyObject());
             gameManager.instance.updateGameGoal(-1, gameObject);
@@ -223,5 +226,15 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
         itemScript.ExpAmount = experience;
         item.SetActive(true);//set the coin object to active
         Destroy(item, 30f);//Destroy the item afte x amount of time
+    }
+    public void dropItem()
+    {
+        int randomNumber = Random.Range(0, 100);
+        Vector3 position = transform.position;//position of the enemy or destroyed object 
+        if(randomNumber >=0 && randomNumber < 25)
+        {
+            GameObject item = Instantiate(itemToCollect[Random.Range(0, itemToCollect.Length)], position + new Vector3(0f, 2f, 0f), Quaternion.Euler(-90,0,0));// Item Drop
+        }
+        
     }
 }
