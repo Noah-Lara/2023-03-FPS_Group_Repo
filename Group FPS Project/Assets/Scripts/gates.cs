@@ -23,22 +23,29 @@ public class gates : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(gameManager.instance.enemiesRemaining == 1)
-        {
+    {        
+        
             StartCoroutine(RaiseGate());
-        }
+        
     }
 
     IEnumerator RaiseGate()
     {
-        float timeCurr = 0;
-        while (timeCurr < Duration)
+        yield return new WaitForSeconds(30);
+        if (gameManager.instance.enemiesRemaining == 0)
         {
-            transform.position = Vector3.Lerp(startPos, dest, timeCurr/Duration);
-            timeCurr += Time.deltaTime;
-            yield return new WaitForSeconds(0);
+            
+            float timeCurr = 0;
+            while (timeCurr < Duration)
+            {
+                transform.position = Vector3.Lerp(startPos, dest, timeCurr / Duration);
+                timeCurr += Time.deltaTime;
+
+            }
+            transform.position = dest;
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
         }
-        transform.position = dest;
+        
     }
 }
