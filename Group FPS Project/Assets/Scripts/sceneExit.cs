@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class sceneExit : MonoBehaviour
 {
     public string sceneToLoad;
+    public loadLevel lvlLoader;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,8 +15,8 @@ public class sceneExit : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 gameManager.instance.loadNextlevel = true;
-                SceneManager.LoadScene(sceneToLoad);
-
+                //SceneManager.LoadScene(sceneToLoad);
+                lvlLoader.loadNextLevel();
             }
         }
 
