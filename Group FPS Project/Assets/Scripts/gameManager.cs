@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
     public GameObject AudioMenu;
     public GameObject checkPointMenu;
     public GameObject PlayerhitFlash;
+    public GameObject PlayerlowHealth;
     public Image playerHPBar;
     public Image playerStaminaBar;
     public TextMeshProUGUI enemiesRemainingText;
@@ -147,9 +148,43 @@ public class gameManager : MonoBehaviour
 
     public IEnumerator playerHit()
     {
-        PlayerhitFlash.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        PlayerhitFlash.SetActive(false);
+        if (instance.playerScript.HP <= (instance.playerScript.HPOriginal * .25))
+        {
+            StartCoroutine(lowHealth());
+        }
+
+       PlayerhitFlash.SetActive(true);
+       StopCoroutine(UIFade(PlayerhitFlash.GetComponent<Image>(), 1f, .1f));
+       StartCoroutine(UIFade(PlayerhitFlash.GetComponent<Image>(), 1f, .1f));
+       yield return new WaitForSeconds(.5f);
+       StartCoroutine(UIFade(PlayerhitFlash.GetComponent<Image>(), 0f, .5f));
+       PlayerhitFlash.SetActive(false);
+    
     }
 
+    public IEnumerator lowHealth()
+    {
+        while (instance.playerScript.HP <= instance.playerScript.HPOriginal * .25)
+        {
+            PlayerlowHealth.SetActive(true);
+            StartCoroutine(UIFade(PlayerlowHealth.GetComponent<Image>(), .3f, .3f));
+            yield return new WaitForSeconds(2);
+            StartCoroutine(UIFade(PlayerlowHealth.GetComponent<Image>(), 1f, .3f));
+            yield return new WaitForSeconds(.5f);
+        }
+        PlayerlowHealth.SetActive(false);   
+    }
+
+    public IEnumerator UIFade(Image I,float e_Value ,float dur)
+    {
+        float e_time = 0;
+        float s_Value = I.color.a;
+        while (e_time < dur)
+        {
+            e_time += Time.deltaTime;
+            float N_alpha = Mathf.Lerp(s_Value, e_Value, e_time/dur);
+            I.color = new Color(I.color.r, I.color.b, I.color.g, N_alpha);
+            yield return null;
+        }
+    }
 }
