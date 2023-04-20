@@ -1353,7 +1353,7 @@ MonoBehaviour:
   - {fileID: 8952088404014583381, guid: 9582dd80353a0d8448841d22b0172e45, type: 3}
   - {fileID: 3307366907386669369, guid: 99edec6cbc923844a87cb8092de7be27, type: 3}
   headPos: {fileID: 1399487013808814297}
-  HP: 5
+  HP: 1
   roamDist: 5
   sightAngle: 90
   playerFaceSpeed: 15

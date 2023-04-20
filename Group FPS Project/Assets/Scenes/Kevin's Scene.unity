@@ -388,6 +388,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdfbcfc84fcadc042bfbf29025dfb56f, type: 3}
+--- !u!1 &1091491918 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6558975445127267321, guid: c3ef60a3303f98b4a9714162d9222314, type: 3}
+  m_PrefabInstance: {fileID: 1918120022}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1091491925
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091491918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 35.1
+  m_Center: {x: -32.03, y: 1.9516115, z: -49.9}
 --- !u!1001 &1335421848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -606,6 +624,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5786555725104961859, guid: c3ef60a3303f98b4a9714162d9222314, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 81.29
+      objectReference: {fileID: 0}
     - target: {fileID: 7188367501976496655, guid: c3ef60a3303f98b4a9714162d9222314, type: 3}
       propertyPath: m_Name
       value: Map Dungeon 1
@@ -894,6 +916,10 @@ PrefabInstance:
     - target: {fileID: 3732861683313983988, guid: 2333ba1015c06fb4aa17d6f15776927c, type: 3}
       propertyPath: m_Name
       value: SpawnerDinningHall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732861683313983991, guid: 2333ba1015c06fb4aa17d6f15776927c, type: 3}
+      propertyPath: numToSpawn
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3732861683313983992, guid: 2333ba1015c06fb4aa17d6f15776927c, type: 3}
       propertyPath: m_RootOrder

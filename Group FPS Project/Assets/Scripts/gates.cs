@@ -12,27 +12,37 @@ public class gates : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip clip;
 
+    bool playerInArea;
+
     Vector3 startPos;
     Vector3 dest;
     // Start is called before the first frame update
     void Start()
     {
+        playerInArea = false;
        startPos = transform.position;
        dest = new Vector3(transform.position.x + MoveDist_X, transform.position.y + MoveDist_Y, transform.position.z + MoveDist_Z);
     }
 
     // Update is called once per frame
     void Update()
-    {        
-        
-            StartCoroutine(RaiseGate());
-        
-    }
+    {
 
+        StartCoroutine(RaiseGate());
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInArea = true;
+        }
+    }
     IEnumerator RaiseGate()
     {
+        
         yield return new WaitForSeconds(30);
-        if (gameManager.instance.enemiesRemaining == 0)
+        if (gameManager.instance.enemiesRemaining == 0 && playerInArea)
         {
             
             float timeCurr = 0;
