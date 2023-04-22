@@ -125,12 +125,12 @@ GameObject:
   - component: {fileID: 4569225875141538480}
   - component: {fileID: 4569225875141538481}
   - component: {fileID: 4569225875141538482}
+  - component: {fileID: 1165140452}
   - component: {fileID: 4569225875141538479}
   - component: {fileID: 4569225875141538483}
   - component: {fileID: 4569225875141538484}
   - component: {fileID: 196532680}
   - component: {fileID: 15542767}
-  - component: {fileID: 1165140452}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -225,6 +225,28 @@ MonoBehaviour:
   HPOriginal: 0
   playerSpeedOrig: 0
   isSprinting: 0
+--- !u!114 &1165140452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569225875141538485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e38ba457a316447b3dd8b3d295c40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 4569225875885292004}
+  playerObj: {fileID: 4569225875141538480}
+  maxSlideTime: 1
+  slideForce: 200
+  slideTimer: 0
+  slideYScale: 0.5
+  crouchSpeed: 1
+  crouchYscale: 0.5
+  slideKey: 306
+  crouchKey: 99
 --- !u!143 &4569225875141538479
 CharacterController:
   m_ObjectHideFlags: 0
@@ -411,28 +433,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1165140452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4569225875141538485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e38ba457a316447b3dd8b3d295c40e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: {fileID: 4569225875885292004}
-  playerObj: {fileID: 4569225875141538480}
-  maxSlideTime: 1
-  slideForce: 200
-  slideTimer: 0
-  slideYScale: 0.5
-  crouchSpeed: 1
-  crouchYscale: 0.5
-  slideKey: 306
-  crouchKey: 99
 --- !u!1 &4569225875885292007
 GameObject:
   m_ObjectHideFlags: 0

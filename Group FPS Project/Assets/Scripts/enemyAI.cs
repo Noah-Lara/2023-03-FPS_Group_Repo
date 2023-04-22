@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class enemyAI : MonoBehaviour, IDamage, IPhysics
 {
@@ -11,6 +12,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Animator anim;
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject itemModel;
+    [SerializeField] GameObject FloatingText;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] Transform headPos;
@@ -195,6 +197,9 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
+            if (FloatingText) {
+                ShowExp();
+            }
             anim.SetBool("Dead", true);            
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
@@ -255,5 +260,11 @@ public class enemyAI : MonoBehaviour, IDamage, IPhysics
         itemScript.ExpAmount = experience;
         item.SetActive(true);//set the coin object to active
         Destroy(item, 30f);//Destroy the item afte x amount of time
+    }
+
+    void ShowExp()
+    {
+        var text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        text.GetComponent<TextMeshPro>().text = experience.ToString();
     }
 }
