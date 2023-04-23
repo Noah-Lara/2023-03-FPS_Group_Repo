@@ -14,14 +14,19 @@ public class sceneExit : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
+                gameManager.instance.levelFinish();
                 gameManager.instance.loadNextlevel = true;
                 //SceneManager.LoadScene(sceneToLoad);
                 lvlLoader.loadNextLevel();
             }
         }
-
     }
 
-
+    public void nextLevel()
+    {
+        gameManager.instance.loadNextlevel = true;
+        //SceneManager.LoadScene(sceneToLoad);
+        lvlLoader.loadNextLevel();
+    }
 
 }

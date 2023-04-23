@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject optionMenu;
     public GameObject AudioMenu;
+    public GameObject statsMenu;
     public GameObject checkPointMenu;
     public GameObject PlayerhitFlash;
     public GameObject PlayerlowHealth;
@@ -133,6 +134,15 @@ public class gameManager : MonoBehaviour
         activeMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(LoseFSelectedButton);
+    }
+
+    public void levelFinish()
+    {
+        pauseState();
+        activeMenu = statsMenu;
+        activeMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseFSelectedButton);
     }
 
     IEnumerator youWin()
