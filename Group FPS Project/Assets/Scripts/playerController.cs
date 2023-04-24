@@ -7,6 +7,8 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [Header("-----Components-----")]
     [SerializeField] CharacterController controller;
     [SerializeField] AudioSource aud;
+    [SerializeField] GameObject projectile;
+    [SerializeField] Transform shootPos;
 
     [Header("-----Player Stats-----")]
     [Range(1, 100)] [SerializeField] public int HP;
@@ -20,9 +22,10 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     [Range(1, 100)] [SerializeField] int stamina;
     [SerializeField] float uiBarSpeed;
     [SerializeField] GameObject playerClone;
-    
-   
-    
+    [SerializeField] int projectileSpeed;
+    [SerializeField] float bulletSpeedY;
+
+
 
     [Header("-----Power-Up Stats-----")]
     [SerializeField] List<powerUpStats> spellList = new List<powerUpStats>();
@@ -53,10 +56,10 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     public int HPOriginal;
     int StaminaOrig;
     public float playerSpeedOrig;
-
+    Camera cam;
     //int selectedGun;
     int selectedSpell;
-
+    Vector3 destination;
     public bool isSprinting;
     float zoomOrig;
     bool isPlayingFootsteps;
@@ -215,7 +218,7 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-
+        
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, spellShootDist))
         {
@@ -226,10 +229,16 @@ public class playerController : MonoBehaviour, IPhysics, IDamage
             }
 
             Instantiate(bulletHitEffect, hit.point, bulletHitEffect.transform.rotation);
+            GameObject projectileClone = Instantiate(projectile, shootPos.position, Quaternion.identity);
+            destination = hit.point;
+            projectileClone.GetComponent<Rigidbody>().velocity = (destination - shootPos.position).normalized * projectileSpeed;
         }
         yield return new WaitForSeconds(spellShootRate);
         isShooting = false;
     }
+
+   
+
 
 
     public void respawnPlayer()
