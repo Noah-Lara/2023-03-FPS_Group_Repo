@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2642311626250748396}
   - component: {fileID: 2642311626251748140}
   - component: {fileID: 2642311626253688301}
+  - component: {fileID: 1047495203}
+  - component: {fileID: 1047495202}
   m_Layer: 0
   m_Name: Door_Wooden_Round_Left
   m_TagString: Untagged
@@ -33,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2642311626250748396
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -99,3 +101,30 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4690904050770353206, guid: 18ba769f6f471c94ba78b15f094317ba, type: 3}
+--- !u!65 &1047495203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642311626253688300}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: -0.6446914, y: 1.1131961, z: 0.05084342}
+--- !u!114 &1047495202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642311626253688300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5bd7dbf87ed4ae43b8ed3cfd2c39a40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: Main Menu
+  lvlLoader: {fileID: 0}

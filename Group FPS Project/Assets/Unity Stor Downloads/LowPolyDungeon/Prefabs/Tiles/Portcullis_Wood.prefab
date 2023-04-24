@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7485583272657402099}
   - component: {fileID: 4613609178438126649}
   - component: {fileID: 8656927238323103413}
+  - component: {fileID: 197039357}
+  - component: {fileID: 197039358}
   m_Layer: 0
   m_Name: Portcullis_Wood
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6558975445304798700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,3 +101,35 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7366163157142776665, guid: d6c5272c24aac2241b77698daa7a38a0, type: 3}
+--- !u!135 &197039357
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558975445304798700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8.76
+  m_Center: {x: 0, y: 1.9516112, z: 2.54}
+--- !u!114 &197039358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558975445304798700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade383f89c5c22e478650cca81526804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Movespeed: 0
+  Duration: 0
+  MoveDist_X: 0
+  MoveDist_Y: 0
+  MoveDist_Z: 0
+  aud: {fileID: 0}
+  clip: {fileID: 0}
