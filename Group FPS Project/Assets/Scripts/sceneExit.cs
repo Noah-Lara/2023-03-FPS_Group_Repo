@@ -22,11 +22,4 @@ public class sceneExit : MonoBehaviour
         }
     }
 
-    public void nextLevel()
-    {
-        gameManager.instance.loadNextlevel = true;
-        //SceneManager.LoadScene(sceneToLoad);
-        lvlLoader.loadNextLevel();
-    }
-
 }
