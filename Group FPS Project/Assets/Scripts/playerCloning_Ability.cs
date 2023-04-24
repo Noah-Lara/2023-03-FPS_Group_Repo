@@ -18,7 +18,16 @@ public class playerCloning_Ability : MonoBehaviour
     Vector3 enemyDir;
     bool isShooting;
     bool isMoving;
+    bool enemyinRange;
+    GameObject ene;
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy")) {
+            enemyinRange = true;
+            GameObject ene = other.gameObject;
+        }
+    }
     private void Update()
     {
         //Moves clone to target location where camera is facing else it follows the player
@@ -63,20 +72,21 @@ public class playerCloning_Ability : MonoBehaviour
     //Checks within Sphere
     bool CanseeEnemy()
     {
-        GameObject ene = GameObject.FindGameObjectWithTag("Enemy");
-
-        enemyDir = (ene.transform.position - shootPos.position).normalized;
-
-        RaycastHit hit;
-        if (Physics.Raycast(shootPos.position, enemyDir, out hit))
+        if (enemyinRange)
         {
-            if (hit.collider)
+            enemyDir = (ene.transform.position - shootPos.position).normalized;
+
+            RaycastHit hit;
+            if (Physics.Raycast(shootPos.position, enemyDir, out hit))
             {
-                if (agent.remainingDistance < agent.stoppingDistance)
+                if (hit.collider)
                 {
-                    faceEnemy();
+                    if (agent.remainingDistance < agent.stoppingDistance)
+                    {
+                        faceEnemy();
+                    }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
