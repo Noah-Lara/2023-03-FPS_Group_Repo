@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class mainMenu : MonoBehaviour
 {
     public loadLevel lvlLoader;
+    public Animator slide;
     
     public void PlayGame()
     {
