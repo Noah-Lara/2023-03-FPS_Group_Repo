@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using TMPro;
 
 public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
 {
@@ -10,6 +11,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject FloatingText;
     //[SerializeField] Rigidbody rb;
     [SerializeField] GameObject itemModel;
     [SerializeField] GameObject[] itemToCollect;
@@ -165,6 +167,10 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
         if (HP <= 0)
         {
             StopAllCoroutines();
+            if (FloatingText)
+            {
+                ShowExp();
+            }
             anim.SetBool("Dead", true);
             GetComponent<SphereCollider>().enabled = false;
             GetComponent<CapsuleCollider>().enabled = false;
@@ -236,5 +242,11 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
             GameObject item = Instantiate(itemToCollect[Random.Range(0, itemToCollect.Length)], position + new Vector3(0f, 2f, 0f), Quaternion.Euler(-90,0,0));// Item Drop
         }
         
+    }
+
+    void ShowExp()
+    {
+        var text = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
+        text.GetComponent<TextMeshPro>().text = experience.ToString();
     }
 }
