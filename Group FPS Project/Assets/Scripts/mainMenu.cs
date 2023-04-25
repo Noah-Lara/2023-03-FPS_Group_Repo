@@ -7,7 +7,7 @@ public class mainMenu : MonoBehaviour
 {
     public loadLevel lvlLoader;
     public Animator slide;
-    
+
     public void PlayGame()
     {
         lvlLoader.loadNextLevel();
