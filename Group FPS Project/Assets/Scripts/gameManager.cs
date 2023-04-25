@@ -45,6 +45,7 @@ public class gameManager : MonoBehaviour
     public bool isPaused;
     public bool loadNextlevel;
     VolumeControl volume;
+    Spawner spawner;
     // Start is called before the first frame update
     void Awake()
     {        
@@ -110,7 +111,7 @@ public class gameManager : MonoBehaviour
 
         //The Goal(Subject to change)
 
-            if (enemiesRemaining <= 0 && scene.name == "Level 2")
+        if (enemiesRemaining <= 0 && scene.name == "Level 3")
             {
                 StartCoroutine(youWin());
             }

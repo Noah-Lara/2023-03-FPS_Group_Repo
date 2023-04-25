@@ -46,6 +46,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         hpOriginal = HP;
+        gameManager.instance.updateEnemyTotal(1);
         slider.value = CalculateHealth();
         //gameManager.instance.updateEnemyTotal(1);
         stoppingDistOrg = agent.stoppingDistance;
@@ -110,8 +111,8 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
-            {
+            //if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+            //{
                 agent.stoppingDistance = stoppingDistOrg;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -127,7 +128,7 @@ public class enemySekeletonMinion : MonoBehaviour, IDamage, IPhysics
                 {
                     anim.SetTrigger("MeleeAttack1");
                 }
-            }
+            //}
         }
         return false;
     }

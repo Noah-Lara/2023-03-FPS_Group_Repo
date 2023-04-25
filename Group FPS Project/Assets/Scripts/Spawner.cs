@@ -13,11 +13,11 @@ public class Spawner : MonoBehaviour
     bool isSpawning;
     public int wave;
     int numSpawned;    
-    bool playerInTrigger;
+    public bool playerInTrigger;
     
     private void Start()
     {
-
+        playerInTrigger = false;
         wave = 1;
         //numToSpawn = numToSpawn * (wave * waveMultiplier);
         ////gameManager.instance.updateEnemyTotal(numToSpawn);
@@ -63,7 +63,7 @@ public class Spawner : MonoBehaviour
         if(wave <= totalWaves)
         {
             numToSpawn = numToSpawn * 1.2f;
-            yield return new WaitForSeconds(35);
+            yield return new WaitForSeconds(25);
             wave++;
             numSpawned = 0;
             playerInTrigger = true;

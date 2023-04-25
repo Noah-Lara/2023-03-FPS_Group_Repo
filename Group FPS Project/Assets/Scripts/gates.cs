@@ -11,7 +11,7 @@ public class gates : MonoBehaviour
     [SerializeField] int MoveDist_Z;
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip clip;
-
+    [SerializeField] int minumunEnemies;
     bool playerInArea;
 
     Vector3 startPos;
@@ -42,7 +42,7 @@ public class gates : MonoBehaviour
     {
         
         yield return new WaitForSeconds(30);
-        if (gameManager.instance.enemiesRemaining == 0 && playerInArea)
+        if (gameManager.instance.enemiesRemaining <= 1 && playerInArea)
         {
             
             float timeCurr = 0;

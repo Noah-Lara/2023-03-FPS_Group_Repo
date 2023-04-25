@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DestroyBullet : MonoBehaviour
 {
+    private void Update()
+    {
+        Destroy(gameObject, 3f);
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
-            Destroy(gameObject);
-        Destroy(gameObject);
+       
     }
 }

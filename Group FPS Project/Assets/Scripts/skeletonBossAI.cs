@@ -193,6 +193,7 @@ public class skeletonBossAI : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
+            anim.SetTrigger("Shoot");
             //anim.SetTrigger("Damage");
             //swordColOff();
             StartCoroutine(flashMat());

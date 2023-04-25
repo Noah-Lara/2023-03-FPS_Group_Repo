@@ -14525,8 +14525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f579ea84064a94dbb422d57c735589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
-  sightAngle: 45
+  speed: 9
+  sightAngle: 180
   headPos: {fileID: 78963312080260677}
 --- !u!114 &4993499806947770100
 MonoBehaviour:
@@ -14540,7 +14540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca630870682ffd74bafedbc5406c602c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 15
   timer: 3
   hitEffect: {fileID: 7947386562574004574, guid: 4f9d12591ca93c948947136461041b9b, type: 3}
 --- !u!135 &4993499806947770099
