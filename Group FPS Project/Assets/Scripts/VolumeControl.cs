@@ -26,7 +26,7 @@ public class VolumeControl : MonoBehaviour
             return;
 
         if (enableSound)
-            slider.value = defaultSliderValue;
+            slider.value = PlayerPrefs.GetFloat(volumeParameter, slider.value);
         else
             slider.value = slider.minValue;
 
