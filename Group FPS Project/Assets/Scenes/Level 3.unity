@@ -3241,11 +3241,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2582802520246870563, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
       propertyPath: m_LocalScale.x
-      value: 40
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2582802520246870563, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
       propertyPath: m_LocalScale.z
-      value: 40
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 2582802520246870563, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3295,6 +3295,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 339f5878c03da8d42a6a6ff0d8a7fca8, type: 2}
+    - target: {fileID: 2582802520246870566, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582802520246870566, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2582802520246870566, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2582802520246870568, guid: 51845cb92bef2084cad507264ddb94ae, type: 3}
       propertyPath: m_Name
       value: Pit (2)
