@@ -4615,7 +4615,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 3600821760627151563}
   levelTimeText: {fileID: 2023586915}
+  totalTimeText: {fileID: 1608673110}
   currentTime: 0
+  totalTime: 0
 --- !u!114 &825943933200484399
 MonoBehaviour:
   m_ObjectHideFlags: 0
