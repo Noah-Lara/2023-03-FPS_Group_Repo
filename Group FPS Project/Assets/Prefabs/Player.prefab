@@ -212,7 +212,7 @@ MonoBehaviour:
   projectile: {fileID: 4964419283080209091, guid: 5ba886e309003ac458e10dd4136c2c59, type: 3}
   shootPos: {fileID: 1663233036}
   HP: 100
-  playerSpeed: 5
+  playerSpeed: 7
   sprintMod: 2
   drainRate: 10
   jumpTimes: 2

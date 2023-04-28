@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] float numToSpawn;
     [SerializeField] int timer;
     [SerializeField] Transform[] spawnpos;
-    [SerializeField] int totalWaves;
+    [SerializeField] public int totalWaves;
     
     bool isSpawning;
     public int wave;

@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
     [Header("-----Game Goals-----")]
     List <GameObject> enemyList = new List<GameObject>();
     public int enemiesRemaining;
+    public bool finished;
     [SerializeField] int totalExperience;   
     public bool isPaused;
     public bool loadNextlevel;
@@ -111,7 +112,7 @@ public class gameManager : MonoBehaviour
 
         //The Goal(Subject to change)
 
-        if (enemiesRemaining <= 0 && scene.name == "Level 3")
+        if (enemiesRemaining <= 0 && scene.name == "Level 3" && finished == true)
             {
                 StartCoroutine(youWin());
             }

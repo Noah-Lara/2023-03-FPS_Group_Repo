@@ -12,6 +12,7 @@ public class gates : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip clip;
     [SerializeField] int minumunEnemies;
+    public Spawner spawner;
     bool playerInArea;
 
     Vector3 startPos;
@@ -42,7 +43,7 @@ public class gates : MonoBehaviour
     {
         
         yield return new WaitForSeconds(30);
-        if (gameManager.instance.enemiesRemaining <= 1 && playerInArea)
+        if (gameManager.instance.enemiesRemaining <= 1 && playerInArea && spawner.wave >= spawner.totalWaves)
         {
             
             float timeCurr = 0;
