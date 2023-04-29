@@ -24,7 +24,12 @@ public class Spawner : MonoBehaviour
     }
 
     private void Update()
-    {
+    {       
+        if (numSpawned >= numToSpawn && wave < totalWaves)
+            {
+                playerInTrigger = false;
+                StartCoroutine(nextWave());
+            }
         if (playerInTrigger)
         {
             
@@ -40,32 +45,26 @@ public class Spawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInTrigger = true;
-            if (numSpawned >= numToSpawn && wave < totalWaves)
-            {
-                
-                playerInTrigger = false;
-                StartCoroutine(nextWave());
-            }
+     
         }
     }
 
     IEnumerator spawn()
     {
         isSpawning = true;
-            GameObject enemyClone = Instantiate(enemy, spawnpos[Random.Range(0, spawnpos.Length)].transform.position, enemy.transform.rotation);
-            //gameManager.instance.updateGameGoal(0, enemyClone);
-            numSpawned++;
-            yield return new WaitForSeconds(timer);
+        GameObject enemyClone = Instantiate(enemy, spawnpos[Random.Range(0, spawnpos.Length)].transform.position, enemy.transform.rotation);
+        numSpawned++;
+        yield return new WaitForSeconds(timer);
         isSpawning = false;
     }
     IEnumerator nextWave()
     {
         if(wave <= totalWaves)
         {
-            numToSpawn = numToSpawn * 1.2f;
-            yield return new WaitForSeconds(25);
-            wave++;
             numSpawned = 0;
+            numToSpawn = numToSpawn * 1.2f;
+            yield return new WaitForSeconds(25f);
+            wave++;
             playerInTrigger = true;
         }
         
