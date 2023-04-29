@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6201cd1befc62bf408aa7453d20674eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTrack: {fileID: 0}
+  newTrack: {fileID: 8300000, guid: 82896015ce5a46f4197f2d47b1073b63, type: 3}
 --- !u!82 &3689380863720865340
 AudioSource:
   m_ObjectHideFlags: 0
