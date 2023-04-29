@@ -28,7 +28,7 @@ public class Spawner : MonoBehaviour
         if (playerInTrigger)
         {
             
-                if (!isSpawning && numSpawned < numToSpawn)
+                if (!isSpawning && numSpawned < numToSpawn )
                     StartCoroutine(spawn());
             
         }
@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInTrigger = true;
-            if (numSpawned >= numToSpawn)
+            if (numSpawned >= numToSpawn && wave < totalWaves)
             {
                 
                 playerInTrigger = false;
